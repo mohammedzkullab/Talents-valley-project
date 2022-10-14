@@ -1,0 +1,14 @@
+a,
+button {
+  cursor: pointer;
+}
+.title {
+  font-size: var(--font-size);
+  font-weight: 600;
+}
+.logo_Wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 65px;
+}

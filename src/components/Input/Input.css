@@ -1,0 +1,28 @@
+.form-Input label {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  margin-top: 9px;
+  padding: 16px;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-raduis);
+  outline: none;
+  font-size: var(--font-size);
+  width: 100%;
+}
+.input::placeholder {
+  color: var(--gray);
+}
+.password-input {
+  position: relative;
+}
+.password-input .eye {
+  position: absolute;
+  top: 38%;
+  right: 28px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  color: var(--gray);
+}

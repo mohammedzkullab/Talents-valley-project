@@ -1,0 +1,46 @@
+.login {
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+}
+.login a {
+  font-size: var(--font-size);
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+.login_wrapper {
+  background-color: var(--white);
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 20px;
+  padding: 16px 101px 62px 101px;
+  text-align: left;
+  width: 703px;
+  max-width: 703px;
+  margin: auto;
+  /* height: 821px; */
+}
+.login_form {
+  margin-top: 35px;
+}
+.login_forgot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+.form-Input {
+  margin-bottom: 32px;
+}
+.login_form form button {
+  margin-top: 30px;
+}
+.signUp {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--dark-gray);
+}
+.signUp a {
+  color: var(--primary-color);
+}
