@@ -8,11 +8,13 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailErr, passErr] = useValidate(email, password);
+  const [isTouched, setisTouched] = useState(false);
+  const [emailErr, passErr] = useValidate(email, password, isTouched);
   const submitHandler = (event) => {
     event.preventDefault();
-    // eslint-disable-next-line no-useless-escape
-    console.log(emailErr, passErr);
+    if (!emailErr && !passErr) {
+      email && password && console.log("submit", email, password);
+    }
   };
 
   return (
@@ -27,6 +29,8 @@ function Login() {
               required={false}
               placeholder="email@gmail.com"
               stateHandler={setEmail}
+              blur={setisTouched}
+              errorState={emailErr && emailErr}
             />
           </div>
           <div className="form-Input">
@@ -36,6 +40,8 @@ function Login() {
               required={false}
               placeholder=""
               stateHandler={setPassword}
+              blur={setisTouched}
+              errorState={passErr && passErr}
             />
             <div className="login_forgot">
               <Link>Forgot Password? </Link>
