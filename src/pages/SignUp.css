@@ -1,0 +1,7 @@
+.signup_name {
+  display: flex;
+  gap: 32px;
+}
+.signup_form {
+  margin-top: 32px;
+}

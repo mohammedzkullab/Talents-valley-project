@@ -1,0 +1,9 @@
+.dropdown_select {
+  margin-top: 9px;
+  padding: 16px;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-raduis);
+  outline: none;
+  font-size: var(--font-size);
+  width: 100%;
+}
