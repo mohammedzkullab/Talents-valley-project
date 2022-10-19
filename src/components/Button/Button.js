@@ -1,8 +1,8 @@
 import "./Button.css";
-function Button({ children, type }) {
+function Button({ children, type, loading }) {
   return (
     <button type={type} className="btn">
-      {children}
+      {loading ? "loading ..." : children}
     </button>
   );
 }

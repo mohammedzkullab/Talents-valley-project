@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { BsEyeSlash, BsEye } from "react-icons/bs";
-import EyeClosed from "../../assets/icons/closedEye.svg";
-import EyeOpen from "../../assets/icons/openEye.svg";
+import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
+import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
 import "./Input.css";
 function Input({
   label = "",
@@ -28,19 +28,15 @@ function Input({
                 onChange={(e) => {
                   stateHandler(e.target.value);
                 }}
-                onBlur={() => blur((prev) => !prev)}
+                onBlurCapture={() => blur((prev) => !prev)}
               />
               {passToggle ? (
-                <img
-                  src={EyeClosed}
-                  alt="closed eye"
+                <EyeClosed
                   className="eye"
                   onClick={() => setPassToggle((prev) => !prev)}
                 />
               ) : (
-                <img
-                  src={EyeOpen}
-                  alt="open eye"
+                <EyeOpen
                   className="eye"
                   onClick={() => setPassToggle((prev) => !prev)}
                 />
@@ -62,7 +58,7 @@ function Input({
                 onChange={(e) => {
                   stateHandler(e.target.value);
                 }}
-                onBlur={() => blur((prev) => !prev)}
+                onBlurCapture={() => blur((prev) => !prev)}
               />
             </label>
           )}

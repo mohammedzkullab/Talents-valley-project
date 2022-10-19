@@ -1,11 +1,14 @@
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import BasicLayout from "../components/BasicLayout/BasicLayout";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import "./SignUp.css";
 import DropDown from "../components/DropDown/DropDown";
+import { AuthContext } from "../store/AuthContext";
 
 function SignUp() {
+  const auth = useContext(AuthContext);
   return (
     <BasicLayout>
       <p className="title">Login To Your Account </p>
