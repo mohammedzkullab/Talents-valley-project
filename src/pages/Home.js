@@ -12,6 +12,7 @@ function Home() {
     <div>
       Home
       <Link to="/">login</Link>
+      <Link to="signup">signup</Link>
       <button onClick={logoutHandler}>logout</button>
     </div>
   );

@@ -6,16 +6,17 @@ const useFetch = (url = "", options = {}, dataFunc = (f) => f) => {
     setLoading(true);
     try {
       const response = await fetch(url, options);
+      const recivedData = await response.json();
       if (response.ok) {
-        const recivedData = await response.json();
         dataFunc(recivedData);
-      } else if (response.status === "400") {
-        throw new Error("incorrect email or password");
+      } else if (response.status === 400) {
+        console.log("response", recivedData);
+        setError(recivedData);
       } else {
-        throw new Error("incorrect email or password");
+        console.log("response", recivedData);
+        setError(recivedData);
       }
     } catch (e) {
-      console.error(e.message);
       setError(e);
     } finally {
       setLoading(false);

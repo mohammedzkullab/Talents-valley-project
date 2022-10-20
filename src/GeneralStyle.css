@@ -29,5 +29,8 @@ button {
   border-color: var(--error) !important;
 }
 .error_badge {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
   color: var(--error) !important;
 }

@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
 import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
 import "./Input.css";
@@ -11,9 +10,10 @@ function Input({
   stateHandler = (f) => f,
   blur = (f) => f,
   errorState,
+  backendError,
 }) {
   const [passToggle, setPassToggle] = useState(true);
-  const inputClass = "input " + (errorState && "error");
+  const inputClass = "input " + ((errorState || backendError) && "error");
   return (
     <div className="input_wrapper">
       {type === "password" && (

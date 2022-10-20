@@ -5,3 +5,6 @@
 .signup_form {
   margin-top: 32px;
 }
+.signup_form form button[type="submit"] {
+  margin-top: 60px;
+}
