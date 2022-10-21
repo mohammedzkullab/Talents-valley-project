@@ -16,6 +16,7 @@ function SignUp() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("");
   const [isTouched, setisTouched] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function SignUp() {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      mobile: "+972595040099",
+      mobile: phoneNumber,
       password: password,
       country: country,
     }),
@@ -65,6 +66,7 @@ function SignUp() {
       }
     }
   };
+
   return (
     <BasicLayout>
       <p className="title">Create Your Account </p>
@@ -102,6 +104,16 @@ function SignUp() {
             errorState={emailErr && emailErr}
             backendError={error && error}
           />
+          <Input
+            label="Phone Number"
+            type="phone"
+            placeholder="059-XXXXXXX"
+            stateHandler={setPhoneNumber}
+            blur={setisTouched}
+            errorState={emailErr && emailErr}
+            backendError={error && error}
+          />
+
           <div className="form-Input">
             <Input
               label="Password"

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
 import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./Input.css";
 function Input({
   label = "",
@@ -46,7 +48,24 @@ function Input({
           {errorState && <span className="error_badge">{errorState}</span>}
         </>
       )}
-      {type !== "password" && (
+      {type === "phone" && (
+        <div className="form-Input">
+          {label && (
+            <label className="title">
+              {label}
+              <PhoneInput
+                country={"ps"}
+                className={inputClass}
+                placeholder={placeholder}
+                onChange={stateHandler}
+                onBlurCapture={() => blur((prev) => !prev)}
+              />
+            </label>
+          )}
+          {errorState && <span className="error_badge">{errorState}</span>}
+        </div>
+      )}
+      {type !== "password" && type !== "phone" && (
         <div className="form-Input">
           {label && (
             <label className="title">
