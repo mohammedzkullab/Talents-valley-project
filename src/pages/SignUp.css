@@ -1,5 +1,6 @@
 .signup_name {
   display: flex;
+  justify-content: space-between;
   gap: 32px;
 }
 .signup_form {
@@ -26,4 +27,10 @@
 }
 .react-tel-input .selected-flag {
   padding: 0;
+}
+.react-tel-input {
+  padding: 10px;
+}
+.logo_Wrapper {
+  margin-bottom: 30px;
 }

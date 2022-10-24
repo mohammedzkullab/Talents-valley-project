@@ -9,7 +9,12 @@
   --white: #fff;
   --error: #f50000;
   --border-raduis: 7px;
-  --font-size: 20px;
+  --heading: 25px;
+  --label: 18px;
+  --font-size: 16px;
+  --sub-font-size: 14px;
+  --res-font-size: 14px;
+  --res-sub-font-size: 12px;
 }
 * {
   padding: 0;

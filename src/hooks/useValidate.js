@@ -6,10 +6,13 @@ function useValidate(
   password,
   isTouched,
   setisTouched,
-  isSignUp = false
+  isSignUp = false,
+  firstName,
+  lastName
 ) {
   const [emailError, setEmailError] = useState(null);
   const [passError, setPassError] = useState(null);
+
   const emailCheck = /[\w\.]+@[\w\.]+\.[\w+]{2,4}/gi;
   const passCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g;
   // const nameCheck = /^[a-z ,.'-]+$/i;
@@ -26,9 +29,9 @@ function useValidate(
         setEmailError("please Enter an email");
       }
       setisTouched((prev) => !prev);
-
-      /* password validation */
-
+    }
+    /* password validation */
+    if (isTouched) {
       if (password) {
         if (!passCheck.test(password)) {
           isSignUp
@@ -41,8 +44,6 @@ function useValidate(
         setPassError("please Enter a Password");
       }
       setisTouched((prev) => !prev);
-
-      /* names validation */
     }
   }, [email, password, isTouched]);
 

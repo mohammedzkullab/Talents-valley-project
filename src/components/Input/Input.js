@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
 import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./Input.css";
+import useNewValidation from "../../hooks/useNewValidation";
+
 function Input({
   label = "",
   type = "text",
@@ -14,8 +16,19 @@ function Input({
   errorState,
   backendError,
 }) {
+  // const [errorState, setErrorState] = useState();
   const [passToggle, setPassToggle] = useState(true);
   const inputClass = "input " + ((errorState || backendError) && "error");
+
+  // const dispatchValidate = useNewValidation();
+
+  // useEffect(() => {
+  //   if (isTouched) {
+  //     const err = dispatchValidate();
+  //     setErros(err);
+  //   }
+  // }, [isTouched]);
+
   return (
     <div className="input_wrapper">
       {type === "password" && (
@@ -30,7 +43,9 @@ function Input({
                 onChange={(e) => {
                   stateHandler(e.target.value);
                 }}
-                onBlurCapture={() => blur((prev) => !prev)}
+                onBlurCapture={() => {
+                  blur((prev) => !prev);
+                }}
               />
               {passToggle ? (
                 <EyeClosed
@@ -55,6 +70,7 @@ function Input({
               {label}
               <PhoneInput
                 country={"ps"}
+                flagUrl="https://catamphetamine.github.io/country-flag-icons/3X2/{PS}.svg"
                 className={inputClass}
                 placeholder={placeholder}
                 onChange={stateHandler}

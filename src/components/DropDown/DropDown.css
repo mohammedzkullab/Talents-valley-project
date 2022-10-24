@@ -1,4 +1,4 @@
-/* .dropdown_select {
+.dropdown_select {
   margin-top: 9px;
   padding: 16px;
   border: 1px solid var(--light-gray);
@@ -6,9 +6,13 @@
   outline: none;
   font-size: var(--font-size);
   width: 100%;
-} */
+  cursor: pointer;
+}
+.dropdown_select option {
+  padding: 10px 6px;
+}
 
-.dropdown_button {
+/* .dropdown_button {
   margin-top: 9px;
   padding: 16px;
   border: 1px solid var(--light-gray);
@@ -60,4 +64,4 @@
 .options li[aria-selected="true"] {
   background: var(--secondary-color);
   cursor: pointer;
-}
+} */

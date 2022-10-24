@@ -22,6 +22,7 @@ button {
   text-align: left;
   width: 703px;
   max-width: 703px;
+  min-height: 821px;
   margin: auto;
 }
 /*error*/
@@ -33,4 +34,25 @@ button {
   align-items: center;
   margin-top: 5px;
   color: var(--error) !important;
+  font-size: var(--sub-font-size);
+}
+.head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 64px;
+}
+.head a {
+  margin-right: 137px;
+}
+.heading {
+  font-size: 25px;
+  font-weight: 600;
+}
+.paragraph {
+  font-size: var(--font-size);
+  margin-top: 10px;
+  color: var(--gray);
+}
+button[type="submit"] {
+  margin-top: 60px;
 }

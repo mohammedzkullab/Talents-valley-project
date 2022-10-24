@@ -5,5 +5,9 @@
   align-items: center;
   justify-content: space-around;
   padding: 37px;
-  padding-top: 0;
+  /* padding-top: 0; */
+}
+.footer a {
+  color: var(--black);
+  font-size: var(--label);
 }

@@ -1,10 +1,12 @@
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import Footer from "../Footer/Footer";
 import "./BasicLayout.css";
-function BasicLayout({ children }) {
+function BasicLayout({ children, head, backBtn }) {
   return (
     <div className="layout">
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper head={head} backBtn={backBtn}>
+        {children}
+      </ContentWrapper>
       <Footer />
     </div>
   );

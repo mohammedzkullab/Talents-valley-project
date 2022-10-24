@@ -1,9 +1,14 @@
-import Logo from "../Logo";
 import "../../GeneralStyle.css";
-function ContentWrapper({ children }) {
+function ContentWrapper({ children, head, backBtn }) {
   return (
     <div className="content_wrapper">
-      <Logo />
+      {backBtn && (
+        <div className="head">
+          {backBtn}
+          {head}
+        </div>
+      )}
+      {!backBtn && head}
       {children}
     </div>
   );

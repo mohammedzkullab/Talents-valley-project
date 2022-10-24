@@ -1,7 +1,8 @@
 .layout {
   background: var(--secondary-color);
-  display: flex;
+  padding-top: 96px;
+  /* display: flex;
   justify-content: space-around;
-  flex-direction: column;
-  height: 100vh;
+  flex-direction: column; */
+  /* height: 100vh; */
 }

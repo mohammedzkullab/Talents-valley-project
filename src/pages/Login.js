@@ -5,11 +5,13 @@ import BasicLayout from "../components/BasicLayout/BasicLayout";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import Loader from "../components/Loader/Loader";
+import Logo from "../components/Logo";
 import { ReactComponent as ErrorBadge } from "../assets/icons/errorBadge.svg";
 import useValidate from "../hooks/useValidate";
 import useFetch from "../hooks/useFetch";
 import { AuthContext } from "../store/AuthContext";
 import "./Login.css";
+import "../MediaQueries.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,8 +51,8 @@ function Login() {
   };
 
   return (
-    <BasicLayout>
-      <p className="title">Login To Your Account </p>
+    <BasicLayout head={<Logo />}>
+      <p className="title heading">Login To Your Account </p>
       <div className="login_form">
         <form onSubmit={submitHandler}>
           <div className="form-Input">
@@ -77,7 +79,7 @@ function Login() {
               backendError={error && error}
             />
             <div className="login_forgot">
-              <Link>Forgot Password? </Link>
+              <Link to="forgetPass">Forgot Password? </Link>
             </div>
           </div>
           <Button type="submit" disabled={loading}>
