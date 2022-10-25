@@ -30,74 +30,78 @@ function VerficationOtp({ setInputObj }) {
   };
 
   return (
-    <>
-      <input
-        type="text"
-        maxLength="1"
-        name="otp1"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp1}
-        onChange={(e) => handleChange("inp1", e)}
-        tabIndex="1"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-      <input
-        type="text"
-        maxLength="1"
-        name="otp2"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp2}
-        onChange={(e) => handleChange("inp2", e)}
-        tabIndex="2"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-      <input
-        type="text"
-        maxLength="1"
-        name="otp3"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp3}
-        onChange={(e) => handleChange("inp3", e)}
-        tabIndex="3"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-      <input
-        type="text"
-        maxLength="1"
-        name="otp4"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp4}
-        onChange={(e) => handleChange("inp4", e)}
-        tabIndex="4"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-      <input
-        type="text"
-        maxLength="1"
-        name="otp5"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp5}
-        onChange={(e) => handleChange("inp5", e)}
-        tabIndex="5"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-      <input
-        type="text"
-        maxLength="1"
-        name="otp6"
-        autoComplete="off"
-        className="otpInput"
-        value={inputs.otp6}
-        onChange={(e) => handleChange("inp6", e)}
-        tabIndex="6"
-        onKeyUp={(e) => inputfocus(e)}
-      />
-    </>
+    <div className="otpInputs_Wrapper">
+      <div className="threeInputs">
+        <input
+          type="text"
+          maxLength="1"
+          name="otp1"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp1}
+          onChange={(e) => handleChange("inp1", e)}
+          tabIndex="1"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+        <input
+          type="text"
+          maxLength="1"
+          name="otp2"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp2}
+          onChange={(e) => handleChange("inp2", e)}
+          tabIndex="2"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+        <input
+          type="text"
+          maxLength="1"
+          name="otp3"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp3}
+          onChange={(e) => handleChange("inp3", e)}
+          tabIndex="3"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+      </div>
+      <div className="threeInputs">
+        <input
+          type="text"
+          maxLength="1"
+          name="otp4"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp4}
+          onChange={(e) => handleChange("inp4", e)}
+          tabIndex="4"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+        <input
+          type="text"
+          maxLength="1"
+          name="otp5"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp5}
+          onChange={(e) => handleChange("inp5", e)}
+          tabIndex="5"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+        <input
+          type="text"
+          maxLength="1"
+          name="otp6"
+          autoComplete="off"
+          className="otpInput"
+          value={inputs.otp6}
+          onChange={(e) => handleChange("inp6", e)}
+          tabIndex="6"
+          onKeyUp={(e) => inputfocus(e)}
+        />
+      </div>
+    </div>
   );
 }
 

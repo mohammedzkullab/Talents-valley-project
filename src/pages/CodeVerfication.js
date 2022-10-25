@@ -4,11 +4,12 @@ import BasicLayout from "../components/BasicLayout/BasicLayout";
 import Button from "../components/Button/Button";
 import Loader from "../components/Loader/Loader";
 import Logo from "../components/Logo";
+import VerficationOtp from "../components/OtpInput/VerficationOtp";
 import { ReactComponent as BackBtn } from "../assets/icons/backBtn.svg";
 import { ReactComponent as ErrorBadge } from "../assets/icons/errorBadge.svg";
 import useFetch from "../hooks/useFetch";
+import "../GeneralStyle.css";
 import "../MediaQueries.css";
-import VerficationOtp from "../components/OtpInput/VerficationOtp";
 function CodeVerfication() {
   const { state } = useLocation();
   const { id } = state;
