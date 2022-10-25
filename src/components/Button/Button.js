@@ -3,10 +3,10 @@ function Button({
   children = "button",
   type = "button",
   disabled = false,
-  ...rest
+  onClick = (f) => f,
 }) {
   return (
-    <button type={type} className="btn" disabled={disabled}>
+    <button type={type} className="btn" disabled={disabled} onClick={onClick}>
       {children}
     </button>
   );

@@ -42,6 +42,9 @@
   .error-badge {
     font-size: var(--res-sub-font-size) !important;
   }
+  /* .layout {
+    padding-top: 25px;
+  } */
   .logo_Wrapper {
     margin-bottom: 30px;
   }
@@ -51,6 +54,7 @@
   .content_wrapper {
     padding: 16px 25px 22px 25px;
     width: 370px;
+    min-height: auto;
   }
   .form-Input {
     margin-bottom: 18px;
@@ -78,6 +82,9 @@
   .footer {
     width: 100%;
     padding-bottom: 12px;
+  }
+  .footer a {
+    font-size: var(--res-sub-font-size);
   }
   .react-tel-input {
     padding: 6px !important;
