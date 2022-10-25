@@ -1,79 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as Indicator } from "../../assets/icons/Indicator.svg";
 import "./DropDown.css";
 import "../../GeneralStyle.css";
-function DropDown({ items = [], label = "" }) {
+function DropDown({
+  items = [],
+  label = "",
+  initItem,
+  stateHandler = (f) => f,
+}) {
+  const [isOpen, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(initItem);
+
+  const toggleDropdown = () => setOpen(!isOpen);
+
+  const handleItemClick = (id) => {
+    selectedItem === id ? setSelectedItem(null) : setSelectedItem(id);
+    toggleDropdown();
+  };
+  useEffect(() => {
+    if (selectedItem) {
+      stateHandler(items.find((item) => item.id === selectedItem).label);
+    }
+  }, [selectedItem]);
+
   return (
     <div className="form-Input">
       <label className="title">
         {label}
-        <select className="dropdown_select">
-          {items &&
-            items.map((item, i) => (
-              <option key={i} value={item} className="dropdown_option">
-                {item}
-              </option>
-            ))}
-        </select>
+        {items && (
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={toggleDropdown}>
+              {selectedItem
+                ? items.find((item) => item.id === selectedItem).label
+                : "Please select a country"}
+              <Indicator className={`icon ${isOpen && "open"}`} />
+            </div>
+            <div className={`dropdown-body ${isOpen && "open"}`}>
+              {items &&
+                items.map((item) => (
+                  <div
+                    className="dropdown-item"
+                    onClick={(e) => handleItemClick(e.target.id)}
+                    id={item.id}
+                    key={item.id}
+                  >
+                    <span
+                      className={`dropdown-item-dot ${
+                        item.id === selectedItem && "selected"
+                      }`}
+                    >
+                      •{" "}
+                    </span>
+                    {item.label}
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
       </label>
     </div>
   );
 }
 
-// export default DropDown;
-// const DropDown = ({ items = [], label = "" }) => {
-//   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-//   const [selectedOption, setSelectedOption] = useState(0);
-
-//   const toggleOptions = () => {
-//     setIsOptionsOpen(!isOptionsOpen);
-//   };
-
-//   const setSelectedThenCloseDropdown = (index) => {
-//     setSelectedOption(index);
-//     setIsOptionsOpen(false);
-//   };
-
-//   return (
-//     <div className="input_wrapper">
-//       <label className="title">{label}</label>
-
-//       <div className="button_wrapper">
-//         <button
-//           type="button"
-//           aria-haspopup="listbox"
-//           aria-expanded={isOptionsOpen}
-//           className={
-//             isOptionsOpen ? "dropdown_button expanded" : "dropdown_button"
-//           }
-//           onClick={toggleOptions}
-//         >
-//           {items[selectedOption]}
-//         </button>
-//         <Indicator className="indicator" />
-//       </div>
-//       <ul
-//         className={`options ${isOptionsOpen ? "show" : ""}`}
-//         role="listbox"
-//         aria-activedescendant={items[selectedOption]}
-//         tabIndex={-1}
-//       >
-//         {items.map((option, index) => (
-//           <li
-//             id={option}
-//             role="option"
-//             aria-selected={selectedOption === index}
-//             tabIndex={0}
-//             key={index}
-//             onClick={() => {
-//               setSelectedThenCloseDropdown(index);
-//             }}
-//           >
-//             {option}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
 export default DropDown;

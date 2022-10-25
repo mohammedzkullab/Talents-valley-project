@@ -55,6 +55,9 @@ function SignUp() {
   }, []);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
 
+  useEffect(() => {
+    console.log(country);
+  }, [country]);
   const submitHandler = (event) => {
     event.preventDefault();
     setisTouched(true);
@@ -145,7 +148,13 @@ function SignUp() {
             backendError={error && error}
           />
           <DropDown
-            items={["UAE", "Palestine"]}
+            items={[
+              { id: "0", label: "Palestine" },
+              { id: "1", label: "UAE" },
+              { id: "2", label: "USA" },
+              { id: "3", label: "UK" },
+            ]}
+            initItem="0"
             label="Country"
             stateHandler={setCountry}
           />
