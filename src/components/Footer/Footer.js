@@ -1,13 +1,25 @@
 import { Link } from "react-router-dom";
-import "./Footer.css";
+import styled from "styled-components";
 
+const StyledFooter = styled.footer`
+  text-align: left;
+  width: 610px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 37px;
+  a {
+    color: var(--black);
+    font-size: var(--label);
+  }
+`;
 function Footer() {
   return (
-    <footer className="footer">
+    <StyledFooter>
       <Link>Talents Valley</Link>
       <Link>Contacts</Link>
       <Link>Privacy & Terms</Link>
-    </footer>
+    </StyledFooter>
   );
 }
 

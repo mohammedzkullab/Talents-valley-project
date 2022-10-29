@@ -59,12 +59,13 @@ function Input({
             <label className="title">
               {label}
               <PhoneInput
-                country="ps"
+                country={"ps"}
                 className={inputClass}
-                inputProps={{ name: name }}
-                value={value}
+                name={name}
                 placeholder={placeholder}
-                onChange={stateHandler}
+                onChange={(e) => {
+                  stateHandler(e);
+                }}
                 onBlur={(e) => blur(e)}
               />
             </label>
@@ -83,7 +84,9 @@ function Input({
                 name={name}
                 placeholder={placeholder}
                 className={inputClass}
-                onChange={stateHandler}
+                onChange={(e) => {
+                  stateHandler(e);
+                }}
                 onBlur={(e) => blur(e)}
               />
             </label>

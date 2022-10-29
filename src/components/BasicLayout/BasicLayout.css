@@ -1,8 +1,0 @@
-.layout {
-  background: var(--secondary-color);
-  padding-top: 96px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}

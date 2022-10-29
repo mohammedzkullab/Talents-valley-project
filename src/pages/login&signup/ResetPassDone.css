@@ -3,7 +3,8 @@
   margin-top: 63px;
 }
 .light-heading {
-  font-weight: 400;
+  font-weight: 300;
+  text-align: left;
 }
 .pass-res {
   margin: 40px auto;

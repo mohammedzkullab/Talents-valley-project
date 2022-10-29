@@ -1,26 +1,40 @@
 import { useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import BasicLayout from "../components/BasicLayout/BasicLayout";
-import Logo from "../components/Logo";
-import Loader from "../components/Loader/Loader";
-import Button from "../components/Button/Button";
-import { ReactComponent as BackBtn } from "../assets/icons/backBtn.svg";
-import { ReactComponent as ErrorBadge } from "../assets/icons/errorBadge.svg";
-import Input from "../components/Input/Input";
-import useFetch from "../hooks/useFetch";
-import useValidate from "../hooks/useValidate";
+import BasicLayout from "../../components/BasicLayout/BasicLayout";
+import Logo from "../../components/Logo";
+import Loader from "../../components/Loader/Loader";
+import Button from "../../components/Button/Button";
+import { ReactComponent as BackBtn } from "../../assets/icons/backBtn.svg";
+import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
+import Input from "../../components/Input/Input";
+import useFetch from "../../hooks/useFetch";
+import useValidate from "../../hooks/useNewValidation";
 
 import "./ForgetPass.css";
 
 function ForgetPass() {
-  const [email, setEmail] = useState("");
-  const [isTouched, setisTouched] = useState(false);
-  const [emailErr] = useValidate(email, null, isTouched, setisTouched, false);
+  /* form fields validation*/
+  const forgetData = {
+    email: "",
+  };
+  const { values, changeHandler, isValid, errors, touched, blurHandler } =
+    useValidate(forgetData, {
+      validations: {
+        email: {
+          required: { value: true, message: "please enter an email" },
+          pattern: {
+            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            message: "Invalid Email Format",
+          },
+        },
+      },
+    });
+  /* ===  form fields validation === */
   const url = "https://talents-valley.herokuapp.com/api/user/password/forgot";
   const options = {
     method: "post",
     body: JSON.stringify({
-      email: email,
+      email: values.email,
     }),
     headers: {
       "content-type": "application/json",
@@ -34,8 +48,7 @@ function ForgetPass() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setisTouched(true);
-    if (email && !emailErr) {
+    if (isValid) {
       fetchData();
     }
   };
@@ -56,15 +69,16 @@ function ForgetPass() {
         <Input
           label="Email"
           type="text"
+          name="email"
           required={false}
           placeholder="email@gmail.com"
-          stateHandler={setEmail}
-          blur={setisTouched}
-          errorState={emailErr && emailErr}
+          stateHandler={changeHandler}
+          blur={blurHandler}
+          errorState={touched.email && errors.email && errors.email}
           backendError={error && error}
         />
 
-        <Button type="submit" disabled={loading}>
+        <Button type="submit" disabled={!isValid || loading}>
           {loading ? <Loader /> : "Send Code"}
         </Button>
         {error && !error.key && (

@@ -1,5 +1,15 @@
 import { useState } from "react";
+import styled from "styled-components";
 
+const OtpInput = styled.input`
+  box-shadow: 0px 2px 2px #00000029;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: var(--font-size);
+`;
 function VerficationOtp({ setInputObj }) {
   const [inputs, setInputs] = useState({
     inp1: "",
@@ -32,7 +42,7 @@ function VerficationOtp({ setInputObj }) {
   return (
     <div className="otpInputs_Wrapper">
       <div className="threeInputs">
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp1"
@@ -43,7 +53,7 @@ function VerficationOtp({ setInputObj }) {
           tabIndex="1"
           onKeyUp={(e) => inputfocus(e)}
         />
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp2"
@@ -54,7 +64,7 @@ function VerficationOtp({ setInputObj }) {
           tabIndex="2"
           onKeyUp={(e) => inputfocus(e)}
         />
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp3"
@@ -67,7 +77,7 @@ function VerficationOtp({ setInputObj }) {
         />
       </div>
       <div className="threeInputs">
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp4"
@@ -78,7 +88,7 @@ function VerficationOtp({ setInputObj }) {
           tabIndex="4"
           onKeyUp={(e) => inputfocus(e)}
         />
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp5"
@@ -89,7 +99,7 @@ function VerficationOtp({ setInputObj }) {
           tabIndex="5"
           onKeyUp={(e) => inputfocus(e)}
         />
-        <input
+        <OtpInput
           type="text"
           maxLength="1"
           name="otp6"

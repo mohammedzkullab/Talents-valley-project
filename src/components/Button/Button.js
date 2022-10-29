@@ -1,4 +1,17 @@
-import "./Button.css";
+import styled from "styled-components";
+const StyledButton = styled.button`
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: var(--border-raduis);
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: var(--heading);
+  &:disabled {
+    opacity: 0.5;
+  }
+`;
+
 function Button({
   children = "button",
   type = "button",
@@ -6,9 +19,14 @@ function Button({
   onClick = (f) => f,
 }) {
   return (
-    <button type={type} className="btn" disabled={disabled} onClick={onClick}>
+    <StyledButton
+      type={type}
+      className="btn"
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
-    </button>
+    </StyledButton>
   );
 }
 

@@ -1,57 +1,72 @@
-const useNewValidation = () => {
-  const emailCheck = /[\w\.]+@[\w\.]+\.[\w+]{2,4}/gi;
-  const passCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g;
-  const nameCheck = /^[a-z ,.'-]+$/i;
-  const requiredMessage = `This field is required`;
+import { useState } from "react";
 
-  const validate = (value, type, messageType) => {
-    console.log(value, type, messageType);
-    switch (type) {
-      case "name":
-        if (!value) {
-          return requiredMessage;
-        }
-        if (!nameCheck.test(value)) {
-          return messageType;
-        }
-        break;
+const validate = (options, data) => {
+  const validations = options?.validations;
+  if (validations) {
+    let valid = true;
+    const newErrors = {};
+    for (const key in validations) {
+      const value = data[key];
+      const validation = validations[key];
 
-      case "password":
-        if (!value) {
-          return requiredMessage;
-        }
-        if (!passCheck.test(value)) {
-          return messageType;
-        }
-        break;
-
-      case "email":
-        if (!value) {
-          return `This field is required`;
-        }
-        if (!emailCheck.test(value)) {
-          return messageType;
-        }
-        break;
-      default:
-        return "something went wrong !";
+      const pattern = validation?.pattern;
+      if (pattern?.value && !pattern.value.test(value)) {
+        valid = false;
+        newErrors[key] = pattern.message;
+      }
+      const isSame = validation?.isSame;
+      if (isSame?.value && !(data[isSame.value[0]] === data[isSame.value[1]])) {
+        valid = false;
+        console.log("");
+        newErrors[key] = isSame.message;
+      }
+      const custom = validation?.custom;
+      if (custom?.isValid && !custom.isValid(value)) {
+        valid = false;
+        newErrors[key] = custom.message;
+      }
+      if (validation?.required?.value && !value) {
+        valid = false;
+        newErrors[key] = validation?.required?.message;
+      }
     }
+
+    return {
+      isValid: valid,
+      errors: newErrors,
+    };
+  }
+};
+
+const useValidate = (initialState = {}, validations = {}) => {
+  const { isValid: initialIsValid, errors: initialErrors } = validate(
+    validations,
+    initialState
+  );
+  const [values, setValues] = useState(initialState);
+  const [errors, setErrors] = useState(initialErrors);
+  const [isValid, setValid] = useState(initialIsValid);
+  const [touched, setTouched] = useState({});
+
+  const changeHandler = (event) => {
+    const newValues = { ...values, [event.target.name]: event.target.value };
+    const { isValid, errors } = validate(validations, newValues);
+    setTouched({
+      ...touched,
+      [event.target.name]: false,
+    });
+    setValid(isValid);
+    setErrors(errors);
+    setValues(newValues);
   };
 
-  const dispatchValidate = (fields = []) => {
-    console.log(fields);
-    const errors = fields.map((item) => {
-      console.log("item", item);
-      return validate(
-        item.value,
-        item.type,
-        item.message,
-        item.isTouched,
-        item.setIsTouched
-      );
+  const blurHandler = (event) => {
+    setTouched({
+      ...touched,
+      [event.target.name]: true,
     });
-    return errors;
   };
-  return dispatchValidate;
+
+  return { values, changeHandler, isValid, errors, touched, blurHandler };
 };
-export default useNewValidation;
+export default useValidate;

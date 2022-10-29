@@ -9,29 +9,13 @@ function Home() {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [errors, setErros] = useState("");
-  const [isTouched, setisTouched] = useState(false);
-  const dispatchValidate = useNewValidation();
+  // const [isTouched, setisTouched] = useState(false);
+  // const dispatchValidate = useNewValidation();
   const auth = useContext(AuthContext);
   const logoutHandler = () => {
     auth.logout();
   };
-  useEffect(() => {
-    if (isTouched) {
-      const err = dispatchValidate([
-        {
-          value: email,
-          type: "email",
-          message: "email hhh",
-        },
-        {
-          value: password,
-          type: "password",
-          message: "pass hhh",
-        },
-      ]);
-      setErros(err);
-    }
-  }, [email, password, isTouched]);
+
   return (
     <div>
       Home
@@ -42,13 +26,14 @@ function Home() {
       <Link to="/">login</Link>
       <Link to="signup">signup</Link>
       <button onClick={logoutHandler}>logout</button>
+      <p>hello {auth.userData.firstName}</p>
       <Input
         label="Email"
         type="text"
         required={false}
         placeholder="email@gmail.com"
         stateHandler={setEmail}
-        blur={setisTouched}
+        // blur={setisTouched}
         errorState={errors && errors[0]}
         // backendError={error && error}
       />
@@ -58,7 +43,7 @@ function Home() {
         required={false}
         placeholder=""
         stateHandler={setPass}
-        blur={setisTouched}
+        // blur={setisTouched}
         errorState={errors && errors[1]}
 
         // backendError={error && error}

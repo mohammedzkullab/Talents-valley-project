@@ -7,24 +7,7 @@ button {
   font-size: var(--font-size);
   font-weight: 600;
 }
-.logo_Wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 65px;
-}
-/*centered content wrapper*/
-.content_wrapper {
-  background-color: var(--white);
-  box-shadow: 0px 3px 6px #00000029;
-  border-radius: 20px;
-  padding: 16px 101px 62px 101px;
-  text-align: left;
-  width: 703px;
-  max-width: 703px;
-  min-height: 821px;
-  margin: auto;
-}
+
 /*error*/
 .error {
   border-color: var(--error) !important;
@@ -36,14 +19,7 @@ button {
   color: var(--error) !important;
   font-size: var(--sub-font-size);
 }
-.head {
-  display: flex;
-  align-items: center;
-  margin-bottom: 64px;
-}
-.head a {
-  margin-right: 137px;
-}
+
 .heading {
   font-size: 25px;
   font-weight: 600;
@@ -76,4 +52,7 @@ button[type="submit"] {
 .otpInputs_Wrapper .threeInputs {
   display: flex;
   gap: 10px;
+}
+.resetPass {
+  margin-top: 35px;
 }

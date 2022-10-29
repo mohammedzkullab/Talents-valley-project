@@ -1,9 +1,0 @@
-.btn {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: var(--border-raduis);
-  background-color: var(--primary-color);
-  color: var(--white);
-  font-size: var(--heading);
-}

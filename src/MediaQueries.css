@@ -42,9 +42,12 @@
   .error-badge {
     font-size: var(--res-sub-font-size) !important;
   }
-  /* .layout {
+  .layout {
     padding-top: 25px;
-  } */
+  }
+  .input {
+    height: 50px;
+  }
   .logo_Wrapper {
     margin-bottom: 30px;
   }
@@ -91,5 +94,16 @@
   }
   .head a {
     margin-right: 65px;
+  }
+}
+/*height media queries */
+@media only screen and (max-height: 1080px) {
+  .layout {
+    padding-top: 50px;
+  }
+  .content_wrapper {
+    min-height: 678px;
+    width: 670px;
+    padding: 16px 80px;
   }
 }

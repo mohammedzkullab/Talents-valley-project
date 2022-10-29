@@ -21,6 +21,7 @@
   margin-top: 50px;
   text-align: center;
   color: var(--black);
+  padding-bottom: 20px;
 }
 .signUp a {
   color: var(--primary-color);
