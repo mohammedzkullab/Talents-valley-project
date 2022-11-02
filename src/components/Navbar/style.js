@@ -11,6 +11,9 @@ export const StyledNavbar = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
+  .active {
+    border-bottom: 1px solid var(--gray);
+  }
   .nav_list {
     display: flex;
     align-items: center;

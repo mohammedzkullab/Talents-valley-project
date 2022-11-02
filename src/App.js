@@ -65,15 +65,15 @@ function App() {
         <Route
           path="verfication"
           element={
-            (auth.isLoggedIn &&
-              !auth.userData.isBlocked &&
-              !auth.userData.verifiedEmail) ||
-            !auth.userData.verifiedMobile ||
-            auth.userData.verifiedId.status === "not_uploaded" ||
-            auth.userData.verifiedAddress.status === "not_uploaded" ? (
+            auth.isLoggedIn &&
+            !auth.userData.isBlocked &&
+            (!auth.userData.verifiedEmail ||
+              !auth.userData.verifiedMobile ||
+              auth.userData.verifiedId.status === "not_uploaded" ||
+              auth.userData.verifiedAddress.status === "not_uploaded") ? (
               <Verfication />
             ) : (
-              <Navigate to="/" />
+              <Navigate to="home" />
             )
           }
         />

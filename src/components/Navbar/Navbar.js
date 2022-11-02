@@ -11,8 +11,8 @@ const Navbar = () => {
         <LogoHorizintal to="/home" />
       </div>
       <div className="nav_list">
-        <NavLink>Home</NavLink>
-        <NavLink>Invoices</NavLink>
+        <NavLink to="/home">Home</NavLink>
+        <NavLink to="/verfication">Invoices</NavLink>
         <OutlineButton>create</OutlineButton>
       </div>
     </StyledNavbar>
