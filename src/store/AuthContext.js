@@ -1,6 +1,7 @@
 import { useState, createContext } from "react";
 export const AuthContext = createContext({
   token: "",
+  userData: "",
   isLoggedIn: false,
   login: (f) => f,
   logout: (f) => f,
@@ -13,7 +14,7 @@ export const AuthContext = createContext({
 // };
 const AuthContextProvider = (props) => {
   const initToken = localStorage.getItem("token");
-  const initUserData = localStorage.getItem("userData");
+  const initUserData = JSON.parse(localStorage.getItem("userData"));
   const [token, setToken] = useState(initToken);
   const [user, setUser] = useState(initUserData);
   const isLoggedIn = !!token;
@@ -32,12 +33,18 @@ const AuthContextProvider = (props) => {
     setToken(null);
     setUser(null);
   };
+  const setUserData = (userData) => {
+    setUser(userData);
+    localStorage.removeItem("userData");
+    localStorage.setItem("userData", JSON.stringify(userData));
+  };
   const contextValue = {
     token: token,
     userData: user,
     isLoggedIn: isLoggedIn,
     login,
     logout,
+    setUserData,
   };
   return (
     <AuthContext.Provider value={contextValue}>

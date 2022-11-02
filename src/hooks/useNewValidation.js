@@ -47,8 +47,10 @@ const useValidate = (initialState = {}, validations = {}) => {
   const [errors, setErrors] = useState(initialErrors);
   const [isValid, setValid] = useState(initialIsValid);
   const [touched, setTouched] = useState({});
+  const [firstTime, setFirstTime] = useState(true);
 
   const changeHandler = (event) => {
+    setFirstTime(false);
     const newValues = { ...values, [event.target.name]: event.target.value };
     const { isValid, errors } = validate(validations, newValues);
     setTouched({
@@ -61,12 +63,37 @@ const useValidate = (initialState = {}, validations = {}) => {
   };
 
   const blurHandler = (event) => {
-    setTouched({
-      ...touched,
-      [event.target.name]: true,
-    });
+    !firstTime &&
+      setTouched({
+        ...touched,
+        [event.target.name]: true,
+      });
+  };
+  const submitHandler = (event, submitFunc = (f) => f) => {
+    event.preventDefault();
+    const { isValid, errors } = validate(validations, values);
+    let newTouched = {};
+    const keyList = Object.keys(errors);
+    for (let key of keyList) {
+      newTouched = { ...newTouched, [key]: true };
+    }
+    setTouched(newTouched);
+    if (isValid) {
+      submitFunc();
+    }
+
+    setValid(isValid);
+    setErrors(errors);
   };
 
-  return { values, changeHandler, isValid, errors, touched, blurHandler };
+  return {
+    values,
+    changeHandler,
+    isValid,
+    errors,
+    touched,
+    blurHandler,
+    submitHandler,
+  };
 };
 export default useValidate;

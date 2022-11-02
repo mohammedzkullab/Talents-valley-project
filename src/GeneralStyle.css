@@ -56,3 +56,15 @@ button[type="submit"] {
 .resetPass {
   margin-top: 35px;
 }
+.form-Input {
+  margin-bottom: 32px;
+}
+.signUp {
+  margin-top: 30px;
+  text-align: center;
+  color: var(--black);
+  padding-bottom: 20px;
+}
+.signUp a {
+  color: var(--primary-color);
+}

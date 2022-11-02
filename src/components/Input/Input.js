@@ -3,13 +3,15 @@ import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
 import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import "./Input.css";
+// import "./Input.css";
+import { StyledInputWrapper } from "./style";
 
 function Input({
   label = "",
   type = "text",
   name = "",
   value,
+  refer,
   placeholder = "",
   stateHandler = (f) => f,
   blur = (f) => f,
@@ -18,9 +20,11 @@ function Input({
 }) {
   const [passToggle, setPassToggle] = useState(true);
   const inputClass = "input " + ((errorState || backendError) && "error");
-
+  useEffect(() => {
+    refer?.current?.focus();
+  }, [refer]);
   return (
-    <div className="input_wrapper">
+    <StyledInputWrapper>
       {type === "password" && (
         <>
           <label className="title">
@@ -29,6 +33,7 @@ function Input({
               <input
                 type={passToggle ? "password" : "text"}
                 name={name}
+                ref={refer}
                 placeholder={placeholder}
                 className={inputClass}
                 value={value}
@@ -61,6 +66,7 @@ function Input({
               <PhoneInput
                 country="ps"
                 className={inputClass}
+                // ref={refer}
                 inputProps={{ name: name }}
                 value={value}
                 placeholder={placeholder}
@@ -81,6 +87,7 @@ function Input({
                 type={type}
                 value={value}
                 name={name}
+                ref={refer}
                 placeholder={placeholder}
                 className={inputClass}
                 onChange={stateHandler}
@@ -91,7 +98,7 @@ function Input({
           {errorState && <span className="error_badge">{errorState}</span>}
         </div>
       )}
-    </div>
+    </StyledInputWrapper>
   );
 }
 

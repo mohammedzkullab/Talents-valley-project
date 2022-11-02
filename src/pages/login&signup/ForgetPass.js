@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BasicLayout from "../../components/BasicLayout/BasicLayout";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logos/Logo";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import { ReactComponent as BackBtn } from "../../assets/icons/backBtn.svg";
@@ -23,7 +23,7 @@ function ForgetPass() {
         email: {
           required: { value: true, message: "please enter an email" },
           pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
             message: "Invalid Email Format",
           },
         },
@@ -41,9 +41,12 @@ function ForgetPass() {
     },
   };
   const navigate = useNavigate();
-  const dataSyncForgot = useCallback((data) => {
-    navigate("/otp", { state: { id: data.data._id } });
-  }, []);
+  const dataSyncForgot = useCallback(
+    (data) => {
+      navigate("/otp", { state: { id: data.data._id } });
+    },
+    [navigate]
+  );
   const { loading, error, fetchData } = useFetch(url, options, dataSyncForgot);
 
   const submitHandler = (e) => {

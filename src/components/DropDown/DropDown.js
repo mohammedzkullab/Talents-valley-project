@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { ReactComponent as Indicator } from "../../assets/icons/Indicator.svg";
 import "./DropDown.css";
@@ -25,7 +26,7 @@ function DropDown({
 
   return (
     <div className="form-Input">
-      <label className="title">
+      <label className="title dropLabel">
         {label}
         {items && (
           <div className="dropdown">

@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useContext, useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../store/AuthContext";
 import BasicLayout from "../../components/BasicLayout/BasicLayout";
@@ -6,14 +7,16 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import DropDown from "../../components/DropDown/DropDown";
 import Loader from "../../components/Loader/Loader";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logos/Logo";
 import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
 import useFetch from "../../hooks/useFetch";
 import useValidate from "../../hooks/useNewValidation";
 import "./SignUp.css";
+import "../../GeneralStyle.css";
 import "../../MediaQueries.css";
 
 function SignUp() {
+  const inputFocus = useRef();
   const [country, setCountry] = useState("");
   /* form fields validation*/
   const signupData = {
@@ -35,7 +38,7 @@ function SignUp() {
         email: {
           required: { value: true, message: "please enter an email" },
           pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
             message: "Invalid Email Format",
           },
         },
@@ -73,15 +76,13 @@ function SignUp() {
     },
   };
   const auth = useContext(AuthContext);
-  const dataSync = useCallback((data) => {
-    auth.login(data.data.accessToken, data.data.user);
-    navigate("/home", { replace: true });
-  }, []);
+  const dataSync = useCallback(() => {
+    navigate("/", { replace: true });
+  }, [auth, navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     isValid && fetchData();
   };
 
@@ -95,6 +96,7 @@ function SignUp() {
               label="First Name"
               type="text"
               name="firstName"
+              refer={inputFocus}
               placeholder="Enter first name "
               stateHandler={changeHandler}
               blur={blurHandler}
@@ -126,7 +128,6 @@ function SignUp() {
             errorState={touched.email && errors.email && errors.email}
             backendError={error && error}
           />
-
           <div className="form-Input">
             <Input
               label="Password"

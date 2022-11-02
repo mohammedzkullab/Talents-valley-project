@@ -2,6 +2,9 @@
   background-color: white;
   position: relative;
 }
+.dropLabel {
+  color: var(--gray);
+}
 
 .dropdown-header {
   cursor: pointer;

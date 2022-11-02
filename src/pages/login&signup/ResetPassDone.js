@@ -1,6 +1,6 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BasicLayout from "../../components/BasicLayout/BasicLayout";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logos/Logo";
 import Button from "../../components/Button/Button";
 import { ReactComponent as DoneCheck } from "../../assets/icons/checkDone.svg";
 import "./ResetPassDone.css";

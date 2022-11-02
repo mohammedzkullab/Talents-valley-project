@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import BasicLayout from "../../components/BasicLayout/BasicLayout";
 import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logos/Logo";
 import VerficationOtp from "../../components/OtpInput/VerficationOtp";
 import { ReactComponent as BackBtn } from "../../assets/icons/backBtn.svg";
 import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
@@ -29,9 +29,14 @@ function CodeVerfication() {
       "content-type": "application/json",
     },
   };
-  const dataSync = useCallback((data) => {
-    navigate("/resetpass", { state: { recoverToken: data.data.recoverToken } });
-  }, []);
+  const dataSync = useCallback(
+    (data) => {
+      navigate("/resetpass", {
+        state: { recoverToken: data.data.recoverToken },
+      });
+    },
+    [navigate]
+  );
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
   useEffect(() => {
     let finalOtp = "";

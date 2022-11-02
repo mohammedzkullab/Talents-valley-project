@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import BasicLayout from "../../components/BasicLayout/BasicLayout";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logos/Logo";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import { ReactComponent as BackBtn } from "../../assets/icons/backBtn.svg";
@@ -51,7 +51,7 @@ function ResetPass() {
   const navigate = useNavigate();
   const dataSyncReset = useCallback(() => {
     navigate("/resetpassdone", { replace: true });
-  }, []);
+  }, [navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSyncReset);
 
   const submitHandler = (e) => {
