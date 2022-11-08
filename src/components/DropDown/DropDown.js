@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { ReactComponent as Indicator } from "../../assets/icons/Indicator.svg";
 import "./DropDown.css";
-import "../../GeneralStyle.css";
 function DropDown({
   items = [],
   label = "",
@@ -20,20 +19,20 @@ function DropDown({
   };
   useEffect(() => {
     if (selectedItem) {
-      stateHandler(items.find((item) => item.id === selectedItem).label);
+      stateHandler(items.find((item) => item.id === selectedItem).id);
     }
   }, [selectedItem]);
 
   return (
     <div className="form-Input">
       <label className="title dropLabel">
-        {label}
+        {label && label}
         {items && (
           <div className="dropdown">
             <div className="dropdown-header" onClick={toggleDropdown}>
               {selectedItem
                 ? items.find((item) => item.id === selectedItem).label
-                : "Please select a country"}
+                : setSelectedItem(initItem)}
               <Indicator className={`icon ${isOpen && "open"}`} />
             </div>
             <div className={`dropdown-body ${isOpen && "open"}`}>
@@ -52,7 +51,7 @@ function DropDown({
                     >
                       •{" "}
                     </span>
-                    {item.label}
+                    {item.label && item.label}
                   </div>
                 ))}
             </div>

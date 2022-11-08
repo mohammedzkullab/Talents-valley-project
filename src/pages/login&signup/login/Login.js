@@ -12,7 +12,6 @@ import useFetch from "../../../hooks/useFetch";
 import { AuthContext } from "../../../store/AuthContext";
 import { Heading } from "../../../designsystem/typography";
 import { StyledLogin } from "./style";
-import "../../../MediaQueries.css";
 function Login() {
   /* form fields validation*/
   const inputFocus = useRef();

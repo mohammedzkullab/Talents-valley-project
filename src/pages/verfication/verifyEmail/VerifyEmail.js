@@ -1,6 +1,5 @@
 import React, { useContext, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components/macro";
 import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper";
 import MainLayout from "../../../components/MainLayout/MainLayout";
 import { SuperHeading, SubHeading } from "../../../designsystem/typography";
@@ -10,15 +9,14 @@ import { replaceRange } from "../../../utils/replaceRange";
 import EmailIcon from "../../../assets/images/email.png";
 import VerficationOtp from "../../../components/OtpInput/VerficationOtp";
 import useFetch from "../../../hooks/useFetch";
-import useGetUserData from "../../../hooks/useGetUserData";
 import Loader from "../../../components/Loader/Loader";
+import { HeaderWrapper } from "../HeaderWrapper";
 const VerifyEmail = () => {
   const auth = useContext(AuthContext);
   const [userData] = useState(auth.userData);
   const [otp, setOtp] = useState("");
   const [inputsObj, setInputsObj] = useState("");
   const navigate = useNavigate();
-  const { userError, userFetchData } = useGetUserData();
   const url = "https://talents-valley.herokuapp.com/api/user/verify/email";
   const options = {
     method: "post",
@@ -31,9 +29,8 @@ const VerifyEmail = () => {
     },
   };
   const dataSync = useCallback(() => {
-    userFetchData();
-    !userError && navigate("/verfication/emailDone");
-  }, [navigate, userError, userFetchData]);
+    navigate("/verfication/emailDone");
+  }, [navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
   useEffect(() => {
     let finalOtp = "";
@@ -49,17 +46,7 @@ const VerifyEmail = () => {
     }
   };
   var newEmail = replaceRange(userData.email, 2, 5, "*****");
-  const HeaderWrapper = styled.div`
-    .imageWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 50px;
-    }
-    ${SubHeading} {
-      color: var(--gray);
-    }
-  `;
+
   return (
     <MainLayout>
       <ContentWrapper verfication>
@@ -80,7 +67,6 @@ const VerifyEmail = () => {
             {loading ? <Loader /> : "Continue"}
           </Button>
         </form>
-        <span>{userError && userError}</span>
       </ContentWrapper>
     </MainLayout>
   );

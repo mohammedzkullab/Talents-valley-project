@@ -43,9 +43,9 @@ function ForgetPass() {
   const navigate = useNavigate();
   const dataSyncForgot = useCallback(
     (data) => {
-      navigate("/otp", { state: { id: data.data._id } });
+      navigate("/otp", { state: { id: data.data._id, email: values.email } });
     },
-    [navigate]
+    [navigate, values]
   );
   const { loading, error, fetchData } = useFetch(url, options, dataSyncForgot);
 

@@ -11,6 +11,7 @@ export const Heading = styled(SuperHeading)`
 `;
 export const SubHeading = styled(SuperHeading)`
   font-size: 20px;
+  font-weight: 500;
 `;
 export const Paragraph = styled.p`
   font-size: var(--font-size);

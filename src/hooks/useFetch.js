@@ -10,10 +10,8 @@ const useFetch = (url = "", options = {}, dataFunc = (f) => f) => {
       if (response.ok) {
         dataFunc(recivedData);
       } else if (response.status === 400) {
-        console.log("response", recivedData);
         setError(recivedData);
       } else {
-        console.log("response", recivedData);
         setError(recivedData);
       }
     } catch (e) {

@@ -34,6 +34,7 @@
   border: 1px solid var(--light-gray);
   max-height: 157px;
   overflow-y: scroll;
+  z-index: 10000;
 }
 
 .dropdown-item {

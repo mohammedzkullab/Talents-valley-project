@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-
 export const VerficationWrapper = styled.div`
   .completeLater {
     margin-bottom: 16px;
@@ -28,9 +27,17 @@ export const StyledVerficationItem = styled.div`
   .checkDone img {
     padding-right: 20px;
   }
-  ${
-    "" /* .validateStatment {
-    color: ${({ verfied }) => (verfied === "verfied" ? "#E80707" : "#19AB16")};
-  } */
+
+  .label-with-reject-statment {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    span {
+      margin: 0;
+    }
+  }
+  .rejected {
+    display: flex;
+    gap: 8px;
   }
 `;

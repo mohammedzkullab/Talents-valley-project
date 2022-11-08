@@ -6,7 +6,8 @@ export const ReminderWrapper = styled.p`
   text-align: center;
   color: var(--black);
   padding-bottom: 20px;
-  a {
+  a,
+  span {
     color: var(--primary-color);
   }
 `;

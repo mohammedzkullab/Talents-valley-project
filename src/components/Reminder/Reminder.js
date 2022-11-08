@@ -6,7 +6,7 @@ const Reminder = ({ children, url, urlText }) => {
   return (
     <ReminderWrapper>
       {children}
-      <Link to={url}>{urlText}</Link>
+      {url && <Link to={url}>{" " + urlText}</Link>}
     </ReminderWrapper>
   );
 };

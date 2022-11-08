@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useContext, useCallback, useRef } from "react";
+import { useState, useContext, useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../store/AuthContext";
-import BasicLayout from "../../components/BasicLayout/BasicLayout";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-import DropDown from "../../components/DropDown/DropDown";
-import Loader from "../../components/Loader/Loader";
-import Logo from "../../components/Logos/Logo";
-import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
-import useFetch from "../../hooks/useFetch";
-import useValidate from "../../hooks/useNewValidation";
-import "./SignUp.css";
-import "../../GeneralStyle.css";
-import "../../MediaQueries.css";
+import { AuthContext } from "../../../store/AuthContext";
+import BasicLayout from "../../../components/BasicLayout/BasicLayout";
+import Input from "../../../components/Input/Input";
+import Button from "../../../components/Button/Button";
+import DropDown from "../../../components/DropDown/DropDown";
+import Loader from "../../../components/Loader/Loader";
+import Logo from "../../../components/Logos/Logo";
+import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
+import useFetch from "../../../hooks/useFetch";
+import useValidate from "../../../hooks/useNewValidation";
+import { SignUpWrapper } from "./style";
+import { Heading } from "../../../designsystem/typography";
 
 function SignUp() {
   const inputFocus = useRef();
@@ -54,9 +53,7 @@ function SignUp() {
         },
       },
     });
-  useEffect(() => {
-    console.log("saasd", values);
-  }, [values, errors, touched]);
+
   /* ===  form fields validation === */
   const navigate = useNavigate();
 
@@ -88,8 +85,8 @@ function SignUp() {
 
   return (
     <BasicLayout head={<Logo />}>
-      <p className="title heading">Create Your Account </p>
-      <div className="signup_form">
+      <Heading>Create Your Account </Heading>
+      <SignUpWrapper>
         <form onSubmit={submitHandler}>
           <div className="signup_name">
             <Input
@@ -156,12 +153,12 @@ function SignUp() {
           />
           <DropDown
             items={[
-              { id: "0", label: "Palestine" },
-              { id: "1", label: "UAE" },
-              { id: "2", label: "USA" },
-              { id: "3", label: "UK" },
+              { id: "Palestine", label: "Palestine" },
+              { id: "UAE", label: "UAE" },
+              { id: "USA", label: "USA" },
+              { id: "UK", label: "UK" },
             ]}
-            initItem="0"
+            initItem="Palestine"
             label="Country"
             stateHandler={setCountry}
           />
@@ -185,7 +182,7 @@ function SignUp() {
             </span>
           )}
         </form>
-      </div>
+      </SignUpWrapper>
       <p className="signUp">
         Already have an account?<Link to="/"> Sign in</Link>
       </p>

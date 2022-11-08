@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper";
 import MainLayout from "../../../components/MainLayout/MainLayout";
@@ -12,6 +12,7 @@ import { VerficationWrapper } from "./style";
 import { AuthContext } from "../../../store/AuthContext";
 import DisabledButton from "../../../components/Button/DisabledButton";
 import Button from "../../../components/Button/Button";
+import useGetUserData from "../../../hooks/useGetUserData";
 function replaceRange(s, start, end, substitute) {
   return s.substring(0, start) + substitute + s.substring(end);
 }
@@ -22,7 +23,11 @@ const Verfication = () => {
   const navigate = useNavigate();
   var newEmail = replaceRange(userData.email, 2, 5, "*****");
   var newPhone = replaceRange(userData.mobile, 4, 10, "*******");
-
+  const { userError, userFetchData } = useGetUserData();
+  useEffect(() => {
+    console.log("first");
+    userFetchData();
+  }, []);
   return (
     <MainLayout>
       <ContentWrapper verfication>
@@ -53,15 +58,17 @@ const Verfication = () => {
           <VerficationItem
             label="ID Verification"
             value={"Identity card - Driver license - Passport"}
-            // isVerfied={userData.verifiedEmail}
-            to="/verfication/verifyEmail"
+            itemStatus={userData.verifiedId}
+            isVerfied={userData.verifiedId.status === "approved"}
+            to="/verfication/verifyId"
             showFeedback={false}
           />
           <VerficationItem
             label="Address Verification"
             value={"Phone, Electricity,Water Bill-Bank statement"}
-            // isVerfied={userData.verifiedMobile}
-            to="/verfication/verifyMobile"
+            itemStatus={userData.verifiedAddress}
+            isVerfied={userData.verifiedAddress.status === "approved"}
+            to="/verfication/verifyAdress"
             showFeedback={false}
           />
           {userData.verifiedEmail && userData.verifiedMobile ? (
