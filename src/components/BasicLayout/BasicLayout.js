@@ -1,11 +1,12 @@
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import Footer from "../Footer/Footer";
+import Logo from "../Logos/Logo";
 import { Layout } from "./style";
 
-function BasicLayout({ children, head, backBtn }) {
+function BasicLayout({ children, backBtn }) {
   return (
     <Layout>
-      <ContentWrapper head={head} backBtn={backBtn}>
+      <ContentWrapper head={<Logo />} backBtn={backBtn}>
         {children}
       </ContentWrapper>
       <Footer />

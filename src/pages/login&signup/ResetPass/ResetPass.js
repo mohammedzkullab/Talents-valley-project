@@ -1,14 +1,15 @@
 import { useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import BasicLayout from "../../components/BasicLayout/BasicLayout";
-import Logo from "../../components/Logos/Logo";
-import Loader from "../../components/Loader/Loader";
-import Button from "../../components/Button/Button";
-import { ReactComponent as BackBtn } from "../../assets/icons/backBtn.svg";
-import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
-import Input from "../../components/Input/Input";
-import useFetch from "../../hooks/useFetch";
-import useValidate from "../../hooks/useNewValidation";
+import BasicLayout from "../../../components/BasicLayout/BasicLayout";
+import Logo from "../../../components/Logos/Logo";
+import Loader from "../../../components/Loader/Loader";
+import Button from "../../../components/Button/Button";
+import { ReactComponent as BackBtn } from "../../../assets/icons/backBtn.svg";
+import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
+import Input from "../../../components/Input/Input";
+import useFetch from "../../../hooks/useFetch";
+import useValidate from "../../../hooks/useNewValidation";
+import { RESETPASS_VALIDATION } from "../../../utils/validationRules";
 function ResetPass() {
   const { state } = useLocation();
   const { recoverToken } = state;
@@ -18,24 +19,7 @@ function ResetPass() {
     coPassword: "",
   };
   const { values, changeHandler, isValid, errors, touched, blurHandler } =
-    useValidate(resetData, {
-      validations: {
-        password: {
-          required: { value: true, message: "please enter password" },
-          pattern: {
-            value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g,
-            message: "Weak Password ",
-          },
-        },
-        coPassword: {
-          required: { value: true, message: "please enter co-password" },
-          isSame: {
-            value: ["password", "coPassword"],
-            message: "password and its confirm doesn't match",
-          },
-        },
-      },
-    });
+    useValidate(resetData, RESETPASS_VALIDATION, true);
   /* form fields validation*/
   const url = "https://talents-valley.herokuapp.com/api/user/password/recover";
   const options = {
@@ -95,7 +79,7 @@ function ResetPass() {
             backendError={error && error}
           />
         </div>
-        <Button type="submit" disabled={!isValid || loading}>
+        <Button type="submit" disabled={loading}>
           {loading ? <Loader /> : "reset Pass"}
         </Button>
         {error && !error.key && (

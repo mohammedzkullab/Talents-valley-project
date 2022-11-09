@@ -17,7 +17,6 @@ const validate = (options, data) => {
       const isSame = validation?.isSame;
       if (isSame?.value && !(data[isSame.value[0]] === data[isSame.value[1]])) {
         valid = false;
-        console.log("");
         newErrors[key] = isSame.message;
       }
       const custom = validation?.custom;
@@ -38,7 +37,11 @@ const validate = (options, data) => {
   }
 };
 
-const useValidate = (initialState = {}, validations = {}) => {
+const useValidate = (
+  initialState = {},
+  validations = {},
+  validateOnFirstTime = true
+) => {
   const { isValid: initialIsValid, errors: initialErrors } = validate(
     validations,
     initialState
@@ -47,10 +50,10 @@ const useValidate = (initialState = {}, validations = {}) => {
   const [errors, setErrors] = useState(initialErrors);
   const [isValid, setValid] = useState(initialIsValid);
   const [touched, setTouched] = useState({});
-  const [firstTime, setFirstTime] = useState(true);
+  const [firstTime, setFirstTime] = useState(validateOnFirstTime);
 
   const changeHandler = (event) => {
-    setFirstTime(false);
+    setFirstTime((prev) => !prev);
     const newValues = { ...values, [event.target.name]: event.target.value };
     const { isValid, errors } = validate(validations, newValues);
     setTouched({
@@ -63,7 +66,7 @@ const useValidate = (initialState = {}, validations = {}) => {
   };
 
   const blurHandler = (event) => {
-    !firstTime &&
+    firstTime &&
       setTouched({
         ...touched,
         [event.target.name]: true,

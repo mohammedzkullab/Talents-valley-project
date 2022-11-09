@@ -9,12 +9,13 @@ export const StyledContentWrapper = styled.div`
   text-align: left;
   width: 700px;
   max-width: 703px;
-  min-height: 821px;
+  ${"" /* min-height: 821px; */}
   margin: auto;
-
-  display: flex;
+  ${
+    "" /* display: flex;
   justify-content: space-around;
-  flex-direction: column;
+  flex-direction: column; */
+  }
 
   .head {
     display: flex;

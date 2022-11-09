@@ -3,12 +3,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/login&signup/login/Login";
 import SignUp from "./pages/login&signup/signup/SignUp";
 import Home from "./pages/Home";
-import ForgetPass from "./pages/login&signup/ForgetPass";
+import ForgetPass from "./pages/login&signup/ForgotPass/ForgetPass";
 import NotFound from "./pages/NotFound";
 import { AuthContext } from "./store/AuthContext";
-import "./App.css";
-import CodeVerfication from "./pages/login&signup/CodeVerfication";
-import ResetPass from "./pages/login&signup/ResetPass";
+import CodeVerfication from "./pages/login&signup/CodeVerfication/CodeVerfication";
+import ResetPass from "./pages/login&signup/ResetPass/ResetPass";
 import ResetPassDone from "./pages/login&signup/ResetPassDone";
 import Verfication from "./pages/verfication/mainpage/verfication";
 import VerifyEmail from "./pages/verfication/verifyEmail/VerifyEmail";
@@ -19,6 +18,7 @@ import VerifyId from "./pages/verfication/verifyId/VerifyId";
 import { GlobalStyle } from "./GlobalStyle";
 import { MediaQueries } from "./MediaQueries";
 import VerifyAdress from "./pages/verfication/verifyAdress/VerifyAdress";
+import "./App.css";
 function App() {
   const auth = useContext(AuthContext);
   return (

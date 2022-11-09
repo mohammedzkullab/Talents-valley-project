@@ -6,12 +6,16 @@ import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import Loader from "../../../components/Loader/Loader";
 import Logo from "../../../components/Logos/Logo";
-import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
+import Reminder from "../../../components/Reminder/Reminder";
+import ErrorStatment from "../../../components/error/ErrorStatment";
 import useValidate from "../../../hooks/useNewValidation";
 import useFetch from "../../../hooks/useFetch";
 import { AuthContext } from "../../../store/AuthContext";
 import { Heading } from "../../../designsystem/typography";
 import { StyledLogin } from "./style";
+import { LOGIN_VALIDATION } from "../../../utils/validationRules";
+import { API_URL } from "../../../Constants";
+
 function Login() {
   /* form fields validation*/
   const inputFocus = useRef();
@@ -22,35 +26,17 @@ function Login() {
   const {
     values,
     changeHandler,
-    isValid,
     errors,
     touched,
     blurHandler,
     submitHandler: submitValidator,
-  } = useValidate(loginData, {
-    validations: {
-      email: {
-        required: { value: true, message: "please enter an email" },
-        pattern: {
-          value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-          message: "Invalid Email Format",
-        },
-      },
-      password: {
-        required: { value: true, message: "please enter password" },
-        pattern: {
-          value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g,
-          message: "Invalid password",
-        },
-      },
-    },
-  });
+  } = useValidate(loginData, LOGIN_VALIDATION, false);
   /* ===  form fields validation === */
 
   /* === form submission ===*/
   const auth = useContext(AuthContext);
 
-  const url = "https://talents-valley.herokuapp.com/api/user/login";
+  const url = `${API_URL}user/login`;
   const options = {
     method: "post",
     body: JSON.stringify({
@@ -64,7 +50,7 @@ function Login() {
   const navigate = useNavigate();
   const dataSync = useCallback((data) => {
     auth.login(data.data.accessToken, data.data.user);
-    navigate("home", { replace: true });
+    navigate("/home", { replace: true });
   }, []);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
   const submitHandler = (event) => {
@@ -105,17 +91,16 @@ function Login() {
                 <Link to="forgetPass">Forgot Password? </Link>
               </div>
             </div>
-            <Button type="submit">{loading ? <Loader /> : "Sign in"}</Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? <Loader /> : "Sign in"}
+            </Button>
             {error && !error.key && (
-              <span className="error_badge">
-                <ErrorBadge />
-                {error.message}
-              </span>
+              <ErrorStatment>{error.message}</ErrorStatment>
             )}
           </form>
-          <p className="signUp">
-            Don't have an account?<Link to="signup"> Sign up</Link>
-          </p>
+          <Reminder url="signup" urlText="Sign up">
+            Don't have an account?
+          </Reminder>
         </div>
       </StyledLogin>
     </BasicLayout>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper";
@@ -23,9 +24,8 @@ const Verfication = () => {
   const navigate = useNavigate();
   var newEmail = replaceRange(userData.email, 2, 5, "*****");
   var newPhone = replaceRange(userData.mobile, 4, 10, "*******");
-  const { userError, userFetchData } = useGetUserData();
+  const { userFetchData } = useGetUserData();
   useEffect(() => {
-    console.log("first");
     userFetchData();
   }, []);
   return (

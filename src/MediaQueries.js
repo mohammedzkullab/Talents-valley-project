@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { StyledContentWrapper } from "./components/ContentWrapper/style";
 import { SuperHeading } from "./designsystem/typography";
 import { StyledFooter } from "./components/Footer/style";
-import Button from "./components/Button/Button";
+import { StyledButton } from "./components/Button/style";
 export const MediaQueries = createGlobalStyle`
   @media only screen and (max-height: 1080px ) and (min-width: 1200px) {
    ${StyledContentWrapper}{ min-height: 678px;
@@ -31,9 +31,9 @@ export const MediaQueries = createGlobalStyle`
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 606px) {
-  ${Button}{
+ ${StyledButton}{
     font-size: var(--res-font-size) !important;
-  }
+  } 
   .btn,
   .input,
   .title,
