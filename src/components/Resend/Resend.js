@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import Reminder from "../Reminder/Reminder";
 import useResend from "../../hooks/useResend";
@@ -8,19 +9,21 @@ const Resend = ({
   url,
   textMessage,
   hint,
+  token,
   setResendStatus = (f) => f,
 }) => {
   const { done, message, resend } = useResend(
     url,
     body,
-    "code resent successfully"
+    "code resent successfully",
+    token
   );
   const handleResend = () => {
     resend();
   };
   useEffect(() => {
     setResendStatus({ done, message });
-  }, [done, message, setResendStatus]);
+  }, [done, message]);
   return (
     <StyledResendWrapper>
       <Reminder>

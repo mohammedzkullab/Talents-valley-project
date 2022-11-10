@@ -27,6 +27,7 @@ export const SignUpWrapper = styled.div`
     border-right: 1px solid var(--light-gray);
   }
   .react-tel-input .selected-flag {
+    scale: 1.2;
     padding: 0;
   }
   .react-tel-input {

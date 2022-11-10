@@ -1,13 +1,14 @@
 import { useState } from "react";
-const useResend = (url = "", body = {}, successMessage = "") => {
+const useResend = (url = "", body = {}, successMessage = "", token) => {
   const [done, setDone] = useState();
   const [message, setMessage] = useState();
   const resend = () => {
     const options = {
       method: "post",
-      body: JSON.stringify(body),
+      body: body && JSON.stringify(body),
       headers: {
         "content-type": "application/json",
+        Authorization: token && `Bearer ${token}`,
       },
     };
 

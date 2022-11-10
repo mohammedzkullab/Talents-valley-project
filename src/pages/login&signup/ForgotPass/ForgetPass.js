@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Heading, Paragraph } from "../../../designsystem/typography";
 import BasicLayout from "../../../components/BasicLayout/BasicLayout";
-import Logo from "../../../components/Logos/Logo";
 import Loader from "../../../components/Loader/Loader";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
@@ -52,7 +51,6 @@ function ForgetPass() {
   };
   return (
     <BasicLayout
-      head={<Logo />}
       backBtn={
         <Link to="/">
           <BackBtn />
@@ -61,7 +59,7 @@ function ForgetPass() {
     >
       <HeadingWrapper>
         <Heading>Forgot Password?</Heading>
-        <Paragraph>
+        <Paragraph mt>
           We'll send a code to your email to reset your password
         </Paragraph>
       </HeadingWrapper>

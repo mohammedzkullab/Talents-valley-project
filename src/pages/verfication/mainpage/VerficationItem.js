@@ -11,6 +11,7 @@ import { AuthContext } from "../../../store/AuthContext";
 import Loader from "../../../components/Loader/Loader";
 import Tooltip from "../../../components/ToolTip/Tooltip";
 import SecondaryButton from "../../../components/Button/SecondaryButton";
+import { API_URL } from "../../../Constants";
 const VerficationItem = ({
   label = "",
   value = "",
@@ -26,7 +27,7 @@ const VerficationItem = ({
     path && fetchData();
     !path && navigate(`${to}`);
   };
-  const url = `https://talents-valley.herokuapp.com/api/user/${path}`;
+  const url = `${API_URL}user/${path}`;
   const options = {
     method: "post",
     headers: {
@@ -39,7 +40,10 @@ const VerficationItem = ({
   }, []);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
   const btnRender = () => {
-    if (isVerfied === false && !itemStatus.status) {
+    if (
+      (isVerfied === false && !itemStatus.status) ||
+      itemStatus.status === "not_uploaded"
+    ) {
       return (
         <Button small onClick={clickHandler}>
           {loading ? <Loader /> : "Verify"}
@@ -101,6 +105,7 @@ const VerficationItem = ({
       </div>
       <div className="checkDone">
         {btnRender()}
+
         {error && !error.key && (
           <span className="error_badge">
             {/* <ErrorBadge /> */}

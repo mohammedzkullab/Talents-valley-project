@@ -9,15 +9,20 @@ import { replaceRange } from "../../../utils/replaceRange";
 import EmailIcon from "../../../assets/images/email.png";
 import VerficationOtp from "../../../components/OtpInput/VerficationOtp";
 import useFetch from "../../../hooks/useFetch";
+import Resend from "../../../components/Resend/Resend";
+import { API_URL } from "../../../Constants";
 import Loader from "../../../components/Loader/Loader";
 import { HeaderWrapper } from "../HeaderWrapper";
+import ErrorStatment from "../../../components/error/ErrorStatment";
 const VerifyEmail = () => {
   const auth = useContext(AuthContext);
   const [userData] = useState(auth.userData);
   const [otp, setOtp] = useState("");
   const [inputsObj, setInputsObj] = useState("");
+  const [resendStatus, setResendStatus] = useState({});
+
   const navigate = useNavigate();
-  const url = "https://talents-valley.herokuapp.com/api/user/verify/email";
+  const url = `${API_URL}user/verify/email`;
   const options = {
     method: "post",
     body: JSON.stringify({
@@ -41,9 +46,7 @@ const VerifyEmail = () => {
   }, [inputsObj]);
   const submitHandler = (event) => {
     event.preventDefault();
-    if (!error) {
-      fetchData();
-    }
+    fetchData();
   };
   var newEmail = replaceRange(userData.email, 2, 5, "*****");
 
@@ -57,15 +60,34 @@ const VerifyEmail = () => {
           <div className="imageWrapper">
             <img src={EmailIcon} alt="email icon" />
           </div>
-          <SubHeading margin32>
+          <SubHeading alignCenter margin50>
             We have sent you a verification code to your email {newEmail}
           </SubHeading>
         </HeaderWrapper>
         <form onSubmit={submitHandler}>
           <VerficationOtp setInputObj={setInputsObj} />
+
           <Button type="submit" disabled={loading}>
             {loading ? <Loader /> : "Continue"}
           </Button>
+
+          {(error && (
+            <ErrorStatment>
+              {error.key} is {error.message}
+            </ErrorStatment>
+          )) ||
+            (resendStatus && !error && (
+              <span className={resendStatus.done ? "success" : "error_badge"}>
+                {resendStatus.message && resendStatus.message}
+              </span>
+            ))}
+          <Resend
+            url={`${API_URL}user/send-code-email`}
+            textMessage="Didn't get code ? "
+            hint="Resend"
+            token={auth.token}
+            setResendStatus={(done, message) => setResendStatus(done, message)}
+          />
         </form>
       </ContentWrapper>
     </MainLayout>

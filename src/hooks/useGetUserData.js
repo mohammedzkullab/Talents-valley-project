@@ -1,9 +1,10 @@
 import { useContext, useCallback } from "react";
 import { AuthContext } from "../store/AuthContext";
 import useFetch from "./useFetch";
+import { API_URL } from "../Constants";
 const useGetUserData = () => {
   const auth = useContext(AuthContext);
-  const url = "https://talents-valley.herokuapp.com/api/settings/profile";
+  const url = `${API_URL}settings/profile`;
   const options = {
     method: "get",
     headers: {

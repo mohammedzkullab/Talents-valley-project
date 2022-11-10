@@ -6,7 +6,7 @@ import { StyledButton } from "./components/Button/style";
 export const MediaQueries = createGlobalStyle`
   @media only screen and (max-height: 1080px ) and (min-width: 1200px) {
    ${StyledContentWrapper}{ min-height: 678px;
-    width: 615px;
+    width: 650px;
     padding: 16px 59px 40px 59px;
     margin-top: ${(verfication) => (verfication ? "45px" : "0")};
     .head {

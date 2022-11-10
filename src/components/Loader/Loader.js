@@ -7,24 +7,29 @@ const LdsDualRing = styled.div`
   &:after {
     content: " ";
     display: block;
-    width: 20px;
-    height: 20px;
+    width: ${({ big }) => (big ? "60px" : "20px")};
+    height: ${({ big }) => (big ? "60px" : "20px")};
     margin: 0;
     border-radius: 50%;
     border: 3px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    border-color: ${({ invertColor }) =>
+      invertColor
+        ? "#000 transparent #000 transparent"
+        : "#fff transparent #fff transparent"};
+
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
-function Loader() {
-  return <LdsDualRing></LdsDualRing>;
+function Loader({ invertColor, big }) {
+  return <LdsDualRing invertColor={invertColor} big={big}></LdsDualRing>;
 }
 
 export default Loader;

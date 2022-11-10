@@ -1,15 +1,15 @@
 import { useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import BasicLayout from "../../../components/BasicLayout/BasicLayout";
-import Logo from "../../../components/Logos/Logo";
 import Loader from "../../../components/Loader/Loader";
 import Button from "../../../components/Button/Button";
-import { ReactComponent as BackBtn } from "../../../assets/icons/backBtn.svg";
-import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
 import Input from "../../../components/Input/Input";
+import ErrorStatment from "../../../components/error/ErrorStatment";
+import { ReactComponent as BackBtn } from "../../../assets/icons/backBtn.svg";
 import useFetch from "../../../hooks/useFetch";
 import useValidate from "../../../hooks/useNewValidation";
 import { RESETPASS_VALIDATION } from "../../../utils/validationRules";
+import { API_URL } from "../../../Constants";
 function ResetPass() {
   const { state } = useLocation();
   const { recoverToken } = state;
@@ -18,10 +18,16 @@ function ResetPass() {
     password: "",
     coPassword: "",
   };
-  const { values, changeHandler, isValid, errors, touched, blurHandler } =
-    useValidate(resetData, RESETPASS_VALIDATION, true);
+  const {
+    values,
+    changeHandler,
+    errors,
+    touched,
+    blurHandler,
+    submitHandler: submitValidator,
+  } = useValidate(resetData, RESETPASS_VALIDATION, true);
   /* form fields validation*/
-  const url = "https://talents-valley.herokuapp.com/api/user/password/recover";
+  const url = `${API_URL}user/password/recover`;
   const options = {
     method: "post",
     body: JSON.stringify({
@@ -38,13 +44,11 @@ function ResetPass() {
   }, [navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSyncReset);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    isValid && fetchData();
+  const submitHandler = (event) => {
+    submitValidator(event, fetchData);
   };
   return (
     <BasicLayout
-      head={<Logo />}
       backBtn={
         <Link to="/forgetpass">
           <BackBtn />
@@ -80,14 +84,9 @@ function ResetPass() {
           />
         </div>
         <Button type="submit" disabled={loading}>
-          {loading ? <Loader /> : "reset Pass"}
+          {loading ? <Loader /> : "Continue"}
         </Button>
-        {error && !error.key && (
-          <span className="error_badge">
-            <ErrorBadge />
-            {error.message}
-          </span>
-        )}
+        {error && !error.key && <ErrorStatment>{error.message}</ErrorStatment>}
       </form>
     </BasicLayout>
   );

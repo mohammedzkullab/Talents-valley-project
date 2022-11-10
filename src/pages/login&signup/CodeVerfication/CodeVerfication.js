@@ -62,7 +62,7 @@ function CodeVerfication() {
       }
     >
       <Heading>Check Your Email</Heading>
-      <Paragraph>
+      <Paragraph mt>
         We have sent you an email that contains a code to reset your password
       </Paragraph>
 
@@ -78,7 +78,6 @@ function CodeVerfication() {
             {resendStatus.message && resendStatus.message}
           </span>
         )}
-
         <Resend
           body={{ email }}
           url={`${API_URL}user/password/forgot`}

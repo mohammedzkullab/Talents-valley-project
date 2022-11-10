@@ -1,18 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useContext, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../store/AuthContext";
 import BasicLayout from "../../../components/BasicLayout/BasicLayout";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import DropDown from "../../../components/DropDown/DropDown";
 import Loader from "../../../components/Loader/Loader";
-import Logo from "../../../components/Logos/Logo";
-import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
 import useFetch from "../../../hooks/useFetch";
 import useValidate from "../../../hooks/useNewValidation";
-import { SignUpWrapper } from "./style";
 import { Heading } from "../../../designsystem/typography";
+import { SIGNUP_VALIDATION } from "../../../utils/validationRules";
+import { API_URL } from "../../../Constants";
+import { SignUpWrapper } from "./style";
+import ErrorStatment from "../../../components/error/ErrorStatment";
 
 function SignUp() {
   const inputFocus = useRef();
@@ -25,46 +24,26 @@ function SignUp() {
     password: "",
     phoneNumber: "",
   };
-  const { values, changeHandler, isValid, errors, touched, blurHandler } =
-    useValidate(signupData, {
-      validations: {
-        firstName: {
-          required: { value: true, message: "please enter firstName" },
-        },
-        lastName: {
-          required: { value: true, message: "please enter lastName" },
-        },
-        email: {
-          required: { value: true, message: "please enter an email" },
-          pattern: {
-            value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-            message: "Invalid Email Format",
-          },
-        },
-        password: {
-          required: { value: true, message: "please enter password" },
-          pattern: {
-            value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g,
-            message: "Invalid password",
-          },
-        },
-        phoneNumber: {
-          required: { value: true, message: "please enter 555" },
-        },
-      },
-    });
+  const {
+    values,
+    changeHandler,
+    errors,
+    touched,
+    blurHandler,
+    submitHandler: submitValidator,
+  } = useValidate(signupData, SIGNUP_VALIDATION);
 
   /* ===  form fields validation === */
   const navigate = useNavigate();
 
-  const url = "https://talents-valley.herokuapp.com/api/user/signup";
+  const url = `${API_URL}user/signup`;
   const options = {
     method: "post",
     body: JSON.stringify({
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
-      mobile: `+${values.phoneNumber}`,
+      mobile: values.phoneNumber.replace(/\s/g, ""),
       password: values.password,
       country: country,
     }),
@@ -72,19 +51,17 @@ function SignUp() {
       "content-type": "application/json",
     },
   };
-  const auth = useContext(AuthContext);
   const dataSync = useCallback(() => {
     navigate("/", { replace: true });
-  }, [auth, navigate]);
+  }, [navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
 
   const submitHandler = (event) => {
-    event.preventDefault();
-    isValid && fetchData();
+    submitValidator(event, fetchData);
   };
 
   return (
-    <BasicLayout head={<Logo />}>
+    <BasicLayout>
       <Heading>Create Your Account </Heading>
       <SignUpWrapper>
         <form onSubmit={submitHandler}>
@@ -162,24 +139,16 @@ function SignUp() {
             label="Country"
             stateHandler={setCountry}
           />
-          <Button
-            type="submit"
-            className="signup_btn"
-            disabled={isValid || loading}
-          >
+          <Button type="submit" className="signup_btn" disabled={loading}>
             {loading ? <Loader /> : "Sign up"}
           </Button>
           {error && !error.key && (
-            <span className="error_badge">
-              <ErrorBadge />
-              {error.message}
-            </span>
+            <ErrorStatment>{error.message}</ErrorStatment>
           )}
           {error && error.key && (
-            <span className="error_badge">
-              <ErrorBadge />
+            <ErrorStatment>
               {error.key} is {error.message}
-            </span>
+            </ErrorStatment>
           )}
         </form>
       </SignUpWrapper>

@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 import { AuthContext } from "./store/AuthContext";
 import CodeVerfication from "./pages/login&signup/CodeVerfication/CodeVerfication";
 import ResetPass from "./pages/login&signup/ResetPass/ResetPass";
-import ResetPassDone from "./pages/login&signup/ResetPassDone";
+import ResetPassDone from "./pages/login&signup/ResetPassDone/ResetPassDone";
 import Verfication from "./pages/verfication/mainpage/verfication";
 import VerifyEmail from "./pages/verfication/verifyEmail/VerifyEmail";
 import VerifyMobile from "./pages/verfication/verifyMobile/VerifyMobile";
@@ -18,6 +18,7 @@ import VerifyId from "./pages/verfication/verifyId/VerifyId";
 import { GlobalStyle } from "./GlobalStyle";
 import { MediaQueries } from "./MediaQueries";
 import VerifyAdress from "./pages/verfication/verifyAdress/VerifyAdress";
+
 import "./App.css";
 function App() {
   const auth = useContext(AuthContext);
@@ -96,22 +97,12 @@ function App() {
         />
         <Route
           path="verfication/EmailDone"
-          element={
-            auth.isLoggedIn &&
-            !auth.userData.isBlocked &&
-            auth.userData.verifiedEmail ? (
-              <EmailDone />
-            ) : (
-              <Navigate to="/verfication" />
-            )
-          }
+          element={auth.isLoggedIn && !auth.userData.isBlocked && <EmailDone />}
         />
         <Route
           path="verfication/verifyMobile"
           element={
-            auth.isLoggedIn &&
-            !auth.userData.isBlocked &&
-            !auth.userData.verifiedMobile ? (
+            auth.isLoggedIn && !auth.userData.isBlocked ? (
               <VerifyMobile />
             ) : (
               <Navigate to="/verfication" />
@@ -121,13 +112,7 @@ function App() {
         <Route
           path="verfication/MobileDone"
           element={
-            auth.isLoggedIn &&
-            !auth.userData.isBlocked &&
-            auth.userData.verifiedMobile ? (
-              <MobileDone />
-            ) : (
-              <Navigate to="/verfication" />
-            )
+            auth.isLoggedIn && !auth.userData.isBlocked && <MobileDone />
           }
         />
 

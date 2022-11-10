@@ -34,9 +34,9 @@ const AuthContextProvider = (props) => {
     setUser(null);
   };
   const setUserData = (userData) => {
-    setUser(userData);
     localStorage.removeItem("userData");
     localStorage.setItem("userData", JSON.stringify(userData));
+    setUser(userData);
   };
   const contextValue = {
     token: token,

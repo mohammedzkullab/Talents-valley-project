@@ -4,6 +4,8 @@ export const StyledCheckDone = styled.div`
   text-align: center;
   margin-top: 63px;
   ${SubHeading} {
+    text-align: center;
+    margin: 32px 0;
     color: var(--gray);
   }
   ${SuperHeading} {

@@ -1,9 +1,9 @@
 import { ReactComponent as ErrorBadge } from "../../assets/icons/errorBadge.svg";
 import { StyledErrorStatment } from "./style";
-const ErrorStatment = ({ children }) => {
+const ErrorStatment = ({ children, withBadge = true }) => {
   return (
     <StyledErrorStatment>
-      <ErrorBadge />
+      {withBadge && <ErrorBadge />}
       {children}
     </StyledErrorStatment>
   );

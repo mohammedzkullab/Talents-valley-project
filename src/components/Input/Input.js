@@ -3,8 +3,8 @@ import { ReactComponent as EyeClosed } from "../../assets/icons/closedEye.svg";
 import { ReactComponent as EyeOpen } from "../../assets/icons/openEye.svg";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-// import "./Input.css";
 import { StyledInputWrapper } from "./style";
+import ErrorStatment from "../error/ErrorStatment";
 
 function Input({
   label = "",
@@ -23,6 +23,7 @@ function Input({
   useEffect(() => {
     refer?.current?.focus();
   }, [refer]);
+
   return (
     <StyledInputWrapper>
       {type === "password" && (
@@ -55,7 +56,9 @@ function Input({
               )}
             </div>
           </label>
-          {errorState && <span className="error_badge">{errorState}</span>}
+          {errorState && (
+            <ErrorStatment withBadge={false}>{errorState}</ErrorStatment>
+          )}
         </>
       )}
       {type === "phone" && (
@@ -66,16 +69,18 @@ function Input({
               <PhoneInput
                 country="ps"
                 className={inputClass}
-                // ref={refer}
-                inputProps={{ name: name }}
+                inputProps={{ name: "phoneNumber" }}
                 value={value}
                 placeholder={placeholder}
-                onChange={stateHandler}
+                onChange={(country, event, e) => stateHandler(e)}
+                excludeCountries={["il"]}
                 onBlur={(e) => blur(e)}
               />
             </label>
           )}
-          {errorState && <span className="error_badge">{errorState}</span>}
+          {errorState && (
+            <ErrorStatment withBadge={false}>{errorState}</ErrorStatment>
+          )}
         </div>
       )}
       {type !== "password" && type !== "phone" && (
@@ -95,7 +100,9 @@ function Input({
               />
             </label>
           )}
-          {errorState && <span className="error_badge">{errorState}</span>}
+          {errorState && (
+            <ErrorStatment withBadge={false}>{errorState}</ErrorStatment>
+          )}
         </div>
       )}
     </StyledInputWrapper>
