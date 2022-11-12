@@ -13,18 +13,33 @@ import Input from "../../../components/Input/Input";
 import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
 import UploadFile from "../../../components/uploadFile/UploadFile";
 import { HeaderWrapper } from "../HeaderWrapper";
+import { API_URL } from "../../../Constants";
+import useValidate from "../../../hooks/useNewValidation";
 import { StyledFlexWrapper } from "./style";
+import { VERIFY_ADDRESS_VALIDATION } from "../../../utils/validationRules";
+import ErrorStatment from "../../../components/error/ErrorStatment";
 
 const VerifyAdress = () => {
   const [addressDocumentType, setAddressDocumentType] = useState();
-  const [address1, setAddress1] = useState();
-  const [address2, setAddress2] = useState();
   const [country, setCountry] = useState();
-  const [city, setCity] = useState();
   const [file, setFile] = useState();
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const url = "https://talents-valley.herokuapp.com/api/user/verify/address";
+  const verifyAddressData = {
+    address1: "",
+    address2: "",
+    city: "",
+  };
+  const {
+    values,
+    changeHandler,
+    errors,
+    touched,
+    blurHandler,
+    submitHandler: submitValidator,
+  } = useValidate(verifyAddressData, VERIFY_ADDRESS_VALIDATION);
+
+  const url = `${API_URL}user/verify/address`;
   const data = new FormData();
   const options = {
     method: "post",
@@ -41,12 +56,12 @@ const VerifyAdress = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     data.append("addressDocumentType", addressDocumentType);
-    data.append("address1", address1);
-    data.append("address2", address2);
-    data.append("city", city);
+    data.append("address1", values.address1);
+    data.append("address2", values.address2);
+    data.append("city", values.city);
     data.append("country", country);
     data.append("file", file);
-    fetchData();
+    submitValidator(event, fetchData);
   };
 
   return (
@@ -81,25 +96,23 @@ const VerifyAdress = () => {
             <Input
               label="Adress 1"
               type="text"
-              name="Adress1"
+              name="adress1"
               placeholder="Enter  Address 1"
-              stateHandler={setAddress1}
-              //   blur={blurHandler}
-              //   errorState={
-              //     touched.firstName && errors.firstName && errors.firstName
-              //   }
+              stateHandler={changeHandler}
+              blur={blurHandler}
+              errorState={touched.adress1 && errors.adress1 && errors.adress1}
               backendError={error && error}
             />
             <Input
               label="Adress 2"
               type="text"
-              name="Adress2"
+              name="address2"
               placeholder="Enter Address2 "
-              stateHandler={setAddress2}
-              //   blur={blurHandler}
-              //   errorState={
-              //     touched.lastName && errors.lastName && errors.lastName
-              //   }
+              stateHandler={changeHandler}
+              blur={blurHandler}
+              errorState={
+                touched.address2 && errors.address2 && errors.address2
+              }
               backendError={error && error}
             />
           </StyledFlexWrapper>
@@ -107,13 +120,11 @@ const VerifyAdress = () => {
             <Input
               label="City"
               type="text"
-              name="City"
+              name="city"
               placeholder="Enter City "
-              stateHandler={setCity}
-              //   blur={blurHandler}
-              //   errorState={
-              //     touched.firstName && errors.firstName && errors.firstName
-              //   }
+              stateHandler={changeHandler}
+              blur={blurHandler}
+              errorState={touched.City && errors.city && errors.city}
               backendError={error && error}
             />
             <DropDown
@@ -131,7 +142,6 @@ const VerifyAdress = () => {
           </StyledFlexWrapper>
           <UploadFile
             onFileSuccess={setFile}
-            // onFileFail={({ error }) => alert(error)}
             acceptedTypes={["jpg", "png"]}
             hintMessage="Your document shouldn't be three months old"
           />
@@ -139,12 +149,7 @@ const VerifyAdress = () => {
             {loading ? <Loader /> : "Continue"}
           </Button>
         </form>
-        {error && !error.key && (
-          <span className="error_badge">
-            <ErrorBadge />
-            {error.message}
-          </span>
-        )}
+        {error && !error.key && <ErrorStatment>{error.message}</ErrorStatment>}
       </ContentWrapper>
     </MainLayout>
   );

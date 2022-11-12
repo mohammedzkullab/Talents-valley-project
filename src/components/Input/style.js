@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { StyledErrorStatment } from "../error/style";
 
 export const StyledInputWrapper = styled.div`
   position: relative;
@@ -44,15 +45,15 @@ export const StyledInputWrapper = styled.div`
     font-size: var(--sub-font-size);
     position: absolute;
   }
-  /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-
-  /* Firefox */
   input[type="number"] {
     -moz-appearance: textfield;
+  }
+  ${StyledErrorStatment} {
+    position: absolute;
   }
 `;

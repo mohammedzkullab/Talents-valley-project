@@ -9,9 +9,9 @@ import { Hint } from "../../designsystem/typography";
 import ErrorStatment from "../error/ErrorStatment";
 const UploadFile = ({
   onFileSuccess = (f) => f,
-  onFileFail = (f) => f,
   acceptedTypes = [],
   hintMessage = "",
+  errorState,
 }) => {
   const [isFile, setIsFile] = useState(false);
   const [file, setFile] = useState();
@@ -73,7 +73,8 @@ const UploadFile = ({
           {fileError && <ErrorStatment>{fileError}</ErrorStatment>}
         </>
       )}
-      {!fileError && <Hint>{hintMessage}</Hint>}
+      {!fileError && !errorState && <Hint>{hintMessage}</Hint>}
+      {errorState && <ErrorStatment>{errorState}</ErrorStatment>}
       <input
         type="file"
         ref={hiddenFileInput}

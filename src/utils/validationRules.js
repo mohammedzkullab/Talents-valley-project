@@ -79,3 +79,15 @@ export const RESETPASS_VALIDATION = {
     },
   },
 };
+
+export const VERIFY_ID_VALIDATION = {
+  validations: {
+    idNumber: {
+      required: { value: true, message: "please enter id Number" },
+    },
+  },
+};
+
+export const VERIFY_ADDRESS_VALIDATION = {
+  validations: {},
+};

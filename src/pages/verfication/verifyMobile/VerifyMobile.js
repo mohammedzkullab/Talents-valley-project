@@ -17,7 +17,6 @@ import { HeaderWrapper } from "../HeaderWrapper";
 
 const VerifyMobile = () => {
   const auth = useContext(AuthContext);
-  const [userData] = useState(auth.userData);
   const [resendStatus, setResendStatus] = useState({});
   const [otp, setOtp] = useState("");
   const [inputsObj, setInputsObj] = useState("");
@@ -48,7 +47,7 @@ const VerifyMobile = () => {
     event.preventDefault();
     fetchData();
   };
-  var newPhone = replaceRange(userData.mobile, 2, 10, "********");
+  var newPhone = replaceRange(auth.userData.mobile, 2, 10, "********");
   return (
     <MainLayout>
       <ContentWrapper verfication>

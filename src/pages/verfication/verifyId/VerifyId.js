@@ -7,20 +7,22 @@ import { AuthContext } from "../../../store/AuthContext";
 import Button from "../../../components/Button/Button";
 import IdIcon from "../../../assets/images/idCard.png";
 import useFetch from "../../../hooks/useFetch";
+import useValidate from "../../../hooks/useNewValidation";
 import Loader from "../../../components/Loader/Loader";
 import DropDown from "../../../components/DropDown/DropDown";
 import Input from "../../../components/Input/Input";
-import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
 import UploadFile from "../../../components/uploadFile/UploadFile";
 import { HeaderWrapper } from "../HeaderWrapper";
+import { API_URL } from "../../../Constants";
+import ErrorStatment from "../../../components/error/ErrorStatment";
+import { VERIFY_ID_VALIDATION } from "../../../utils/validationRules";
 
 const VerifyId = () => {
-  const [idNumber, setIdNumber] = useState();
-  const [idType, setIdType] = useState();
+  const [idType, setIdType] = useState("");
   const [idFile, setIdFile] = useState();
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const url = "https://talents-valley.herokuapp.com/api/user/verify/id";
+  const url = `${API_URL}user/verify/id`;
   const data = new FormData();
   const options = {
     method: "post",
@@ -34,12 +36,23 @@ const VerifyId = () => {
   }, [navigate]);
   const { loading, error, fetchData } = useFetch(url, options, dataSync);
 
+  const verifyIdData = {
+    idNumber: "",
+  };
+  const {
+    values,
+    changeHandler,
+    errors,
+    touched,
+    blurHandler,
+    submitHandler: submitValidator,
+  } = useValidate(verifyIdData, VERIFY_ID_VALIDATION);
   const submitHandler = (event) => {
     event.preventDefault();
     data.append("file", idFile);
-    data.append("idNumber", idNumber);
+    data.append("idNumber", values.idNumber);
     data.append("idDocumentType", idType);
-    fetchData();
+    submitValidator(event, fetchData);
   };
 
   return (
@@ -74,28 +87,24 @@ const VerifyId = () => {
             type="number"
             name="idNumber"
             placeholder="Enter your ID number"
-            stateHandler={(e) => setIdNumber(e.target.value)}
-            // blur={blurHandler}
-            // errorState={touched.email && errors.email && errors.email}
+            stateHandler={changeHandler}
+            blur={blurHandler}
+            errorState={touched.idNumber && errors.idNumber && errors.idNumber}
             backendError={error && error}
           />
           <UploadFile
             onFileSuccess={setIdFile}
             acceptedTypes={["jpg", "png"]}
             hintMessage="Your document shouldn't be three months old"
+            // errorState={touched.idFile && errors.idFile && errors.idFile}
           />
 
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={false}>
             {loading ? <Loader /> : "Continue"}
           </Button>
         </form>
 
-        {error && !error.key && (
-          <span className="error_badge">
-            <ErrorBadge />
-            {error.message}
-          </span>
-        )}
+        {error && !error.key && <ErrorStatment>{error.message}</ErrorStatment>}
       </ContentWrapper>
     </MainLayout>
   );
