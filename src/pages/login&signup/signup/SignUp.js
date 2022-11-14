@@ -61,7 +61,7 @@ function SignUp() {
   };
 
   return (
-    <BasicLayout>
+    <BasicLayout signUp={"signup"}>
       <Heading>Create Your Account </Heading>
       <SignUpWrapper>
         <form onSubmit={submitHandler}>

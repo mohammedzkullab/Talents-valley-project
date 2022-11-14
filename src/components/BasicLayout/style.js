@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 export const Layout = styled.div`
   background: var(--secondary-color);
   padding-top: 96px;

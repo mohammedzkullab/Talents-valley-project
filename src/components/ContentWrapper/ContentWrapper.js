@@ -1,7 +1,7 @@
 import { StyledContentWrapper } from "./style";
-function ContentWrapper({ children, head, backBtn }) {
+function ContentWrapper({ children, head, backBtn, signUp }) {
   return (
-    <StyledContentWrapper>
+    <StyledContentWrapper signUp={signUp}>
       {backBtn && (
         <div className="head">
           {backBtn}

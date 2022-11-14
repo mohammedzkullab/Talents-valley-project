@@ -24,9 +24,6 @@ export const StyledVerficationItem = styled.div`
     display: flex;
     gap: 5px;
   }
-  .checkDone img {
-    padding-right: 20px;
-  }
 
   .label-with-reject-statment {
     display: flex;

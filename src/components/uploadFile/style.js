@@ -8,7 +8,7 @@ export const FileUploader = styled.div`
 `;
 export const StyledUploadFile = styled.button`
   width: 100%;
-  height: 60px;
+  padding: 17px;
   text-align: center;
   background: #ffffff;
   border: 1px solid #bec2c6;
@@ -21,7 +21,6 @@ export const StyledUploadFile = styled.button`
 export const StyledUploadFileWithFile = styled.div`
   padding: 18px;
   width: 100%;
-  height: 60px;
   text-align: left;
   background: #e2e2e2;
   border: 1px solid ${({ fileError }) => (fileError ? "red" : "#e2e2e2")};

@@ -15,9 +15,9 @@ import VerifyMobile from "./pages/verfication/verifyMobile/VerifyMobile";
 import EmailDone from "./pages/verfication/verifyEmail/EmailDone";
 import MobileDone from "./pages/verfication/verifyMobile/MobileDone";
 import VerifyId from "./pages/verfication/verifyId/VerifyId";
+import VerifyAdress from "./pages/verfication/verifyAddress/VerifyAddress";
 import { GlobalStyle } from "./GlobalStyle";
 import { MediaQueries } from "./MediaQueries";
-import VerifyAdress from "./pages/verfication/verifyAdress/VerifyAdress";
 
 import "./App.css";
 function App() {
@@ -133,9 +133,6 @@ function App() {
           path="verfication/verifyAdress"
           element={
             auth.isLoggedIn && !auth.userData.isBlocked ? (
-              // &&
-              // (auth.userData.verifiedAddress.status === "not_uploaded" ||
-              //   auth.userData.verifiedAddress.status === "rejected")
               <VerifyAdress />
             ) : (
               <Navigate to="/verfication" />

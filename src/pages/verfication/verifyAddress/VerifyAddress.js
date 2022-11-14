@@ -10,7 +10,6 @@ import useFetch from "../../../hooks/useFetch";
 import Loader from "../../../components/Loader/Loader";
 import DropDown from "../../../components/DropDown/DropDown";
 import Input from "../../../components/Input/Input";
-import { ReactComponent as ErrorBadge } from "../../../assets/icons/errorBadge.svg";
 import UploadFile from "../../../components/uploadFile/UploadFile";
 import { HeaderWrapper } from "../HeaderWrapper";
 import { API_URL } from "../../../Constants";
@@ -96,11 +95,13 @@ const VerifyAdress = () => {
             <Input
               label="Adress 1"
               type="text"
-              name="adress1"
+              name="address1"
               placeholder="Enter  Address 1"
               stateHandler={changeHandler}
               blur={blurHandler}
-              errorState={touched.adress1 && errors.adress1 && errors.adress1}
+              errorState={
+                touched.address1 && errors.address1 && errors.address1
+              }
               backendError={error && error}
             />
             <Input
@@ -124,7 +125,7 @@ const VerifyAdress = () => {
               placeholder="Enter City "
               stateHandler={changeHandler}
               blur={blurHandler}
-              errorState={touched.City && errors.city && errors.city}
+              errorState={touched.city && errors.city && errors.city}
               backendError={error && error}
             />
             <DropDown

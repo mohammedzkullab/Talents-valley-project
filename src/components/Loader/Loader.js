@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const LdsDualRing = styled.div`
+export const LdsDualRing = styled.div`
   display: inline-block;
   width: 20px;
   height: 20px;

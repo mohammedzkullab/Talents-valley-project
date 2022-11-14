@@ -1,4 +1,4 @@
-const EMAIL_PATTERN = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const EMAIL_PATTERN = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 const PASSWORD_PATTERN =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/g;
 const PHONENUMBER_PATTERN = /^(\+)/;
@@ -13,10 +13,6 @@ export const LOGIN_VALIDATION = {
     },
     password: {
       required: { value: true, message: "please enter password" },
-      pattern: {
-        value: PASSWORD_PATTERN,
-        message: "Invalid password",
-      },
     },
   },
 };
@@ -89,5 +85,15 @@ export const VERIFY_ID_VALIDATION = {
 };
 
 export const VERIFY_ADDRESS_VALIDATION = {
-  validations: {},
+  validations: {
+    address1: {
+      required: { value: true, message: "please enter Address 1" },
+    },
+    address2: {
+      required: { value: true, message: "please enter Address 2" },
+    },
+    city: {
+      required: { value: true, message: "please enter city" },
+    },
+  },
 };

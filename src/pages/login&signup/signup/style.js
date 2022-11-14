@@ -27,13 +27,18 @@ export const SignUpWrapper = styled.div`
     border-right: 1px solid var(--light-gray);
   }
   .react-tel-input .selected-flag {
-    scale: 1.2;
     padding: 0;
   }
   .react-tel-input {
-    padding: 10px;
+    padding: 9px;
   }
   .logo_Wrapper {
     margin-bottom: 30px;
+  }
+  .react-tel-input .selected-flag .arrow {
+    left: 22px;
+  }
+  .react-tel-input .selected-flag .flag {
+    scale: 1.3;
   }
 `;

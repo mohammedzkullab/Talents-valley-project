@@ -10,14 +10,14 @@ export const StyledInputWrapper = styled.div`
   }
   .input {
     margin-top: 10px;
-    padding: 16px;
+    padding: 17px;
     border: 1px solid var(--light-gray);
     border-radius: var(--border-raduis);
     outline-color: #92aefa;
     ${"" /* outline: none; */}
     font-size: var(--font-size);
     width: 100%;
-    height: 60px;
+    ${"" /* height: 60px; */}
   }
   .input::placeholder {
     color: var(--gray);
