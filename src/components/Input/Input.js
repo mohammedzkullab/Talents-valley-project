@@ -72,7 +72,7 @@ function Input({
                 inputProps={{ name: "phoneNumber" }}
                 value={value}
                 placeholder={placeholder}
-                onChange={(country, event, e) => stateHandler(e)}
+                onChange={(country, event, e, formatted) => stateHandler(e)}
                 excludeCountries={["il"]}
                 onBlur={(e) => blur(e)}
               />

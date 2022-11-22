@@ -14,7 +14,7 @@ export const StyledVerficationItem = styled.div`
   background: var(--secondary-color);
   border: 1px solid #e2e2e2;
   border-radius: 7px;
-  padding: 24px 30px 24px 20px;
+  padding: 24px 20px 24px 20px;
   margin-bottom: 16px;
   .values {
     display: flex;

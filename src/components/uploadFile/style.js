@@ -19,7 +19,7 @@ export const StyledUploadFile = styled.button`
   gap: 15px;
 `;
 export const StyledUploadFileWithFile = styled.div`
-  padding: 18px;
+  padding: 16px;
   width: 100%;
   text-align: left;
   background: #e2e2e2;

@@ -1,0 +1,12 @@
+export const BORDER_RADUIS = "7px";
+export const FS_TITLE = "30px";
+export const FS_HEADING = "25px";
+export const FS_LABEL = "18px";
+export const FS_FONT_SIZE = "16px";
+export const FS_SUB_FONT_SIZE = "14px";
+export const FS_HINT = "12px";
+export const FS_RES_TITLE = "22px";
+export const FS_RES_HEADING = "18px";
+export const FS_RES_LABEL = "16px";
+export const FS_RES_FONT_SIZE = "14px";
+export const FS_RES_SUB_FONT_SIZE = "18px";

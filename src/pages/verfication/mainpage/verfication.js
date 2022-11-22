@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper";
 import MainLayout from "../../../components/MainLayout/MainLayout";
@@ -25,7 +25,7 @@ const Verfication = () => {
   var newEmail = replaceRange(auth.userData.email, 2, 5, "*****");
   var newPhone = replaceRange(auth.userData.mobile, 4, 10, "*******");
   const { userFetchData, loading } = useGetUserData();
-  useEffect(() => {
+  useLayoutEffect(() => {
     userFetchData();
   }, []);
   return (
