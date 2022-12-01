@@ -1,8 +1,9 @@
 import styled from "styled-components/macro";
 export const StyledSideMenu = styled.aside`
   width: 224px;
-  position: relative;
   padding: 60px 30px;
+  position: sticky;
+  top: 50px;
 
   ul li {
     list-style: none;

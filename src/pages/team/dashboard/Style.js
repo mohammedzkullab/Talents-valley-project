@@ -3,4 +3,5 @@ export const StyledOutlet = styled.div`
   ${"" /* background: #fff; */}
   width: 100%;
   padding: 60px 40px;
+  padding-left: 0px;
 `;

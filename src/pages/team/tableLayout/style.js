@@ -14,11 +14,10 @@ export const StyledTableWrapper = styled.div`
   box-shadow: 0px 3px 6px #00000029;
   min-height: 70vh;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   table {
     width: 100%;
-
     text-align: left;
     border-collapse: collapse;
     border: 1px solid #ebebeb;
@@ -44,14 +43,36 @@ export const StyledTableWrapper = styled.div`
     padding: 31px;
     padding-right: 0;
     span {
-      padding: 10px 13px;
       background: #8c8c8c;
       border: 1px solid #8c8c8c;
       border-radius: 50%;
       color: #fff;
+      display: flex;
+      font-size: 16px;
+      align-items: center;
+      width: 40px;
+      justify-content: center;
+      height: 40px;
     }
   }
   table ${LdsDualRing} {
     margin: auto;
+    display: flex;
+    align-items: center;
   }
+  .table-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const StyledFeedback = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 `;

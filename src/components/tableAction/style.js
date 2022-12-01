@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { LdsDualRing } from "../Loader/Loader";
 export const StyledDots = styled.div`
   position: relative;
   cursor: pointer;
@@ -27,8 +28,17 @@ export const StyledPopup = styled.div`
   }
   ul li {
     padding: 15px;
+    display: flex;
+    ${LdsDualRing} {
+      width: 5px;
+      height: 5px;
+      &:after {
+        width: 5px;
+        height: 5px;
+      }
+    }
   }
   ul li:hover {
-    background: var(--light-gray);
+    background: #e8e8e8;
   }
 `;

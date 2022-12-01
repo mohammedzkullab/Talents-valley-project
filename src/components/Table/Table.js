@@ -1,4 +1,10 @@
-const Table = ({ headers, tableList, TableBody, actions }) => {
+const Table = ({
+  headers,
+  tableList,
+  TableBody,
+  setEditedUserId,
+  deleteUserFunc,
+}) => {
   return (
     <table>
       <tbody>
@@ -8,7 +14,11 @@ const Table = ({ headers, tableList, TableBody, actions }) => {
         {tableList &&
           tableList.map((item, index) => (
             <tr key={index}>
-              <TableBody item={item} />
+              <TableBody
+                item={item}
+                setEditedUserId={setEditedUserId}
+                deleteUserFunc={deleteUserFunc}
+              />
             </tr>
           ))}
       </tbody>

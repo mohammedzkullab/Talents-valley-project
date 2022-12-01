@@ -1,9 +1,10 @@
 import React from "react";
 import TableAction from "../../../components/tableAction/TableAction";
 import TableLayout from "../tableLayout/TableLayout";
+// import { StyledTableBody } from "./style";
 const Users = () => {
   const headers = [" ", "Name", "Email", "Balance", " ", "status", " "];
-  const TableBody = ({ item }) => {
+  const TableBody = ({ item, setEditedUserId, deleteUserFunc }) => {
     return (
       <>
         <td>
@@ -26,7 +27,11 @@ const Users = () => {
           )}
         </td>
         <td>
-          <TableAction user={item} />
+          <TableAction
+            user={item}
+            setEditedUserId={setEditedUserId}
+            deleteUserFunc={deleteUserFunc}
+          />
         </td>
       </>
     );
@@ -37,8 +42,8 @@ const Users = () => {
       headers={headers}
       TableBody={TableBody}
       endpoint="team/user/list"
-      // actions={actions}
       offset={280}
+      isSearch={true}
     />
   );
 };
