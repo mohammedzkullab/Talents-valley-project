@@ -1,22 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Heading } from "../../../designsystem/typography";
 import { StyledSideMenu } from "./style";
 
-const SideMenu = () => {
+const SideMenu = ({ items = [], heading = "" }) => {
   return (
     <StyledSideMenu>
+      <Heading>{heading}</Heading>
       <ul>
-        <li>
-          <NavLink end to="/teamdashboard">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="invoices">Invoices</NavLink>
-        </li>
-        <li>
-          <NavLink to="users">Users</NavLink>
-        </li>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item?.end ? (
+              <NavLink end to={item.path}>
+                {item.title}
+              </NavLink>
+            ) : (
+              <NavLink to={item.path}>{item.title}</NavLink>
+            )}
+          </li>
+        ))}
       </ul>
     </StyledSideMenu>
   );

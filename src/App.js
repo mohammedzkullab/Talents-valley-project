@@ -23,6 +23,7 @@ import FreelancerHome from "./pages/freelancer/FreelancerHome";
 import "./App.css";
 import Invoices from "./pages/team/invoices/Invoices";
 import Users from "./pages/team/Users/Users";
+import TeamCreateInvoice from "./pages/team/createInvoice_team/TeamCreateInvoice";
 function App() {
   const auth = useContext(AuthContext);
   return (
@@ -49,6 +50,20 @@ function App() {
           <Route index element={<>hi im home</>} />
           <Route path="invoices" element={<Invoices />} />
           <Route path="users" element={<Users />} />
+        </Route>
+        <Route
+          path="teamdashboard/createInvoice"
+          element={
+            auth.isLoggedIn && auth.userData.role === 1 ? (
+              <TeamCreateInvoice />
+            ) : (
+              <Navigate to="/home" />
+            )
+          }
+        >
+          <Route index element={<>hi im home</>} />
+          <Route path="payout-records" element={<>hi im peyout records</>} />
+          <Route path="add-link" element={<>hi im add links</>} />
         </Route>
         <Route
           path="freelancerhome"

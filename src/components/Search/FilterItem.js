@@ -1,13 +1,6 @@
-// import { useState } from "react";
 import { StyledFilterItem } from "./style";
 
 const FilterItem = ({ checked, setChecked }) => {
-  const handleCheck = () => {
-    // setChecked((prev) => !prev);
-    // setChecked((prev) => ({ ...prev, [checked]: !prev.checked }));
-    // console.log("checked", checked);
-  };
-
   return (
     <ul>
       {checked &&

@@ -13,7 +13,7 @@ const Search = ({ setSearch: onSearchSubmit, setSearchFilters }) => {
     { title: "Team members", key: "isTeam", val: false },
     { title: "Blocked", key: "isBlocked", val: false },
     { title: "Oldest to newest", key: "sort", val: false },
-    { title: "All", key: "all", val: true },
+    { title: "All", key: "all", val: false },
   ]);
   useEffect(() => {
     const timer = setTimeout(() => setTerm(debouncedTerm), 500);
@@ -37,7 +37,7 @@ const Search = ({ setSearch: onSearchSubmit, setSearchFilters }) => {
       val: !newArr[changedIndex].val,
     };
     setChecked(newArr);
-    setSearchFilters((prev) => [...prev].push(changedValue.key));
+    setSearchFilters(newArr);
   };
 
   return (

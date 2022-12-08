@@ -25,7 +25,9 @@ const Navbar = () => {
             <Link to="/" onClick={logoutHandler}>
               logout
             </Link>
-            <OutlineButton>create</OutlineButton>
+            <OutlineButton>
+              <NavLink to="createInvoice">create</NavLink>
+            </OutlineButton>
           </div>
         </StyledNavbar>
       )}

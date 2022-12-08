@@ -10,7 +10,13 @@ function TeamDashboard() {
 
   return (
     <DashboardLayout>
-      <SideMenu />
+      <SideMenu
+        items={[
+          { title: "Home", path: "/createInvoice", end: true },
+          { title: "Invoices", path: "/invoices" },
+          { title: "Users", path: "users" },
+        ]}
+      />
       <StyledOutlet>
         <Outlet />
       </StyledOutlet>

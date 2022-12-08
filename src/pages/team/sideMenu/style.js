@@ -15,6 +15,7 @@ export const StyledSideMenu = styled.aside`
     font-weight: 600;
     color: #707070;
     border-left: 2px solid #d4d4d4;
+    white-space: nowrap;
   }
 
   a.active {
