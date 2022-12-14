@@ -24,6 +24,7 @@ import "./App.css";
 import Invoices from "./pages/team/invoices/Invoices";
 import Users from "./pages/team/Users/Users";
 import TeamCreateInvoice from "./pages/team/createInvoice_team/TeamCreateInvoice";
+import CreateInvoice from "./pages/team/createInvoice_team/create/CreateInvoice";
 function App() {
   const auth = useContext(AuthContext);
   return (
@@ -61,7 +62,7 @@ function App() {
             )
           }
         >
-          <Route index element={<>hi im home</>} />
+          <Route index element={<CreateInvoice />} />
           <Route path="payout-records" element={<>hi im peyout records</>} />
           <Route path="add-link" element={<>hi im add links</>} />
         </Route>

@@ -30,13 +30,7 @@ const Invoices = () => {
   );
 
   const TableBody = ({ item }) => {
-    console.log(
-      new Date(item.createdAt).toDateString("en-us", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
-    );
+    console.log(item);
     return (
       <StyledInvoiceBody>
         <td className="bold">

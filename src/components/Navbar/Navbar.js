@@ -21,12 +21,22 @@ const Navbar = () => {
           </div>
           <div className="nav_list">
             <NavLink to="/home">Home</NavLink>
-            <NavLink to="/verfication">Invoices</NavLink>
+            {auth.isLoggedIn &&
+              !auth.userData.isBlocked &&
+              (!auth.userData.verifiedEmail ||
+                !auth.userData.verifiedMobile ||
+                auth.userData.verifiedId.status !== "approved" ||
+                auth.userData.verifiedAddress.status !== "approved") && (
+                <NavLink to="/verfication">verfication</NavLink>
+              )}
+            <NavLink to="/teamdashboard/invoices">Invoices</NavLink>
             <Link to="/" onClick={logoutHandler}>
               logout
             </Link>
-            <OutlineButton>
-              <NavLink to="createInvoice">create</NavLink>
+            <OutlineButton
+              onClick={() => navigate("/teamdashboard/createInvoice")}
+            >
+              create
             </OutlineButton>
           </div>
         </StyledNavbar>

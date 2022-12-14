@@ -46,6 +46,7 @@ const Users = () => {
       offset={280}
       isSearch={true}
       striped={true}
+      itemsPerPage={10}
     />
   );
 };

@@ -12,8 +12,8 @@ function TeamDashboard() {
     <DashboardLayout>
       <SideMenu
         items={[
-          { title: "Home", path: "/createInvoice", end: true },
-          { title: "Invoices", path: "/invoices" },
+          { title: "Home", path: "/teamdashboard", end: true },
+          { title: "Invoices", path: "invoices" },
           { title: "Users", path: "users" },
         ]}
       />
