@@ -1,5 +1,7 @@
 import styled from "styled-components/macro";
+import { StyledContentWrapper } from "../../../../components/ContentWrapper/style";
 import { StyledInputWrapper } from "../../../../components/Input/style";
+import { Heading } from "../../../../designsystem/typography";
 
 export const StyledCreateInvoiceWrapper = styled.div`
   display: flex;
@@ -40,5 +42,15 @@ export const StyledCreateInvoiceWrapper = styled.div`
   }
   .width-25 {
     width: 25%;
+  }
+  .card-with-heading {
+    ${Heading} {
+      position: sticky;
+      top: 90px;
+    }
+    ${StyledContentWrapper} {
+      position: sticky;
+      top: 150px;
+    }
   }
 `;

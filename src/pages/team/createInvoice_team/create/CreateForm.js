@@ -10,7 +10,7 @@ const CreateForm = ({ changeHandler, invoiceData }) => {
       <Input
         label="Freelancer Name"
         type="text"
-        name="firstName"
+        name="freelancerName"
         placeholder="Enter Freelancer Name"
         stateHandler={(e) => {
           changeHandler(e);
@@ -26,7 +26,6 @@ const CreateForm = ({ changeHandler, invoiceData }) => {
           label="Date"
           type="date"
           name="date"
-          placeholder="Enter last name "
           stateHandler={(e) => changeHandler(e)}
           //   blur={blurHandler}
           //   errorState={
@@ -43,7 +42,8 @@ const CreateForm = ({ changeHandler, invoiceData }) => {
           ]}
           initItem="Palestine"
           label="Status"
-          // stateHandler={changeHandler}
+          name="status"
+          stateHandler={(e) => changeHandler(e)}
         />
       </div>
       <DropDown

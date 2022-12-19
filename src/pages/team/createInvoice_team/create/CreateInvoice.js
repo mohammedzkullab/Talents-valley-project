@@ -7,7 +7,10 @@ import { StyledCreateInvoiceWrapper } from "./style";
 const CreateInvoice = () => {
   const [invoiceData, setInvoiceData] = useState({});
   const changeHandler = (event) => {
-    setInvoiceData({ ...invoiceData, [event.target.name]: event.target.value });
+    setInvoiceData({
+      ...invoiceData,
+      [event.target.name]: event.target.value,
+    });
   };
   useEffect(() => {
     console.log(invoiceData);
@@ -36,7 +39,9 @@ const CreateInvoice = () => {
           paddingBottom={46}
           paddingTop={46}
         >
-          hi
+          {invoiceData.freelancerName}
+          {invoiceData.date}
+          {invoiceData.status}
         </ContentWrapper>
       </div>
     </StyledCreateInvoiceWrapper>

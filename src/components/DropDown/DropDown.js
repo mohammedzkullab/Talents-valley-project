@@ -7,6 +7,7 @@ function DropDown({
   items = [],
   label = "",
   initItem,
+  name,
   stateHandler = (f) => f,
 }) {
   const [isOpen, setOpen] = useState(false);
@@ -20,7 +21,12 @@ function DropDown({
   };
   useEffect(() => {
     if (selectedItem) {
-      stateHandler(items.find((item) => item.id === selectedItem).id);
+      stateHandler({
+        target: {
+          name: name,
+          value: items.find((item) => item.id === selectedItem).id,
+        },
+      });
     }
   }, [selectedItem]);
 
