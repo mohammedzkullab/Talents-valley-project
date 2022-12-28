@@ -1,7 +1,7 @@
 import Input from "../../../../components/Input/Input";
 import TextArea from "../../../../components/TextArea/TextArea";
 
-const JobDetails = () => {
+const JobDetail = ({ changeHandler }) => {
   return (
     <div className="clientInfo">
       <label>Job Details</label>
@@ -10,9 +10,9 @@ const JobDetails = () => {
           <Input
             label=" "
             type="text"
-            name="jobTitle"
+            name="itemName"
             placeholder="Job Title"
-            // stateHandler={changeHandler}
+            stateHandler={(e) => changeHandler(e)}
             // blur={blurHandler}
             // errorState={touched.email && errors.email && errors.email}
             // backendError={error && error}
@@ -22,18 +22,23 @@ const JobDetails = () => {
           <Input
             label=" "
             type="number"
-            name="JobFee"
+            name="price"
             placeholder="$ 0.00"
-            // stateHandler={changeHandler}
+            stateHandler={(e) => changeHandler(e)}
             // blur={blurHandler}
             // errorState={touched.email && errors.email && errors.email}
             // backendError={error && error}
           />
         </div>
       </div>
-      <TextArea resize={false} placeholder="Details" />
+      <TextArea
+        resize={false}
+        placeholder="Details"
+        name="description"
+        stateHandler={(e) => changeHandler(e)}
+      />
     </div>
   );
 };
 
-export default JobDetails;
+export default JobDetail;

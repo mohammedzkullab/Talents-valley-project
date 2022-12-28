@@ -1,3 +1,4 @@
+import Loader from "../Loader/Loader";
 import { StyledButton } from "./style";
 
 function Button({
@@ -5,17 +6,18 @@ function Button({
   type = "button",
   disabled = false,
   onClick = (f) => f,
+  loading = false,
   ...rest
 }) {
   return (
     <StyledButton
       type={type}
       className="btn"
-      disabled={disabled}
+      disabled={loading ? true : null}
       onClick={onClick}
       {...rest}
     >
-      {children}
+      {loading ? <Loader /> : children}
     </StyledButton>
   );
 }

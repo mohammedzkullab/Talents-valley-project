@@ -43,7 +43,7 @@ export const StyledCreateInvoiceWrapper = styled.div`
   .width-25 {
     width: 25%;
   }
-  .card-with-heading {
+  .sticky {
     ${Heading} {
       position: sticky;
       top: 90px;
